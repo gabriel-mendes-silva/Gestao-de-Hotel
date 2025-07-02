@@ -113,7 +113,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuHospedeActionPerformed
 
     private void menuItemQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQuartoActionPerformed
-        // TODO add your handling code here:
+        TelaCadastroQuarto telaCadastroQuarto = new TelaCadastroQuarto(null,true);
     }//GEN-LAST:event_menuItemQuartoActionPerformed
 
     /**

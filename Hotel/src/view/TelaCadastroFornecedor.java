@@ -204,7 +204,7 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
 
         jLabelID.setText("ID");
 
-        jLabelNome.setText("Nome");
+        jLabelNome.setText("Nome Fantasia");
 
         jLabelFone1.setText("Fone 1");
 

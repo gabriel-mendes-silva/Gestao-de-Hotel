@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/manutencao/Documents/Projetos-codigo/Hotel/src/view/NewJFrame.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroProduto.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroModelo.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroQuarto.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroVeiculo.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaMenuPrincipal.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroServico.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroFornecedor.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/controller/ControllerCadHospede.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaBuscaHospede.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroVaga.java</file>
         </group>
     </open-files>
 </project-private>
