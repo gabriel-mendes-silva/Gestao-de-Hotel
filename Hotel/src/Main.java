@@ -1,5 +1,5 @@
 
-import controller.ControllerCadHospede;
+import controller.ControllerCadModelo;
 import view.TelaCadastroHospede;
 
 /*
@@ -13,9 +13,7 @@ import view.TelaCadastroHospede;
  */
 public class Main {
     public static void main(String[] args) {
-        TelaCadastroHospede tela = new TelaCadastroHospede(new javax.swing.JFrame(), true);
-        ControllerCadHospede c = new ControllerCadHospede(tela);
-        
+      
         
     }
 }

@@ -5,6 +5,13 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author aluno
@@ -18,6 +25,88 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public JButton getjButtonBuscar() {
+        return jButtonBuscar;
+    }
+
+    public JButton getjButtonCancelar() {
+        return jButtonCancelar;
+    }
+
+    public JButton getjButtonGravar() {
+        return jButtonGravar;
+    }
+
+    public JButton getjButtonNovo() {
+        return jButtonNovo;
+    }
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
+    }
+
+    public JLabel getjLabeObservacao() {
+        return jLabeObservacao;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getjLabelDescricao() {
+        return jLabelDescricao;
+    }
+
+    public JLabel getjLabelId() {
+        return jLabelId;
+    }
+
+    public JLabel getjLabelMetragem() {
+        return jLabelMetragem;
+    }
+
+    public JLabel getjLabelStatus() {
+        return jLabelStatus;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JTextArea getjTextArea1() {
+        return jTextArea1;
+    }
+
+    public JTextField getjTextFieldId() {
+        return jTextFieldId;
+    }
+
+    public JTextField getjTextFieldMetragem() {
+        return jTextFieldMetragem;
+    }
+
+    public JTextField getjTextFieldPlaca() {
+        return jTextFieldPlaca;
+    }
+
+    public JTextField getjTextFieldStatus() {
+        return jTextFieldStatus;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,6 +170,7 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
         jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Create.png"))); // NOI18N
         jButtonNovo.setText("Novo");
+        jButtonNovo.setActionCommand("0");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -89,15 +179,19 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
 
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setActionCommand("1");
 
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find.png"))); // NOI18N
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setActionCommand("0");
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Exit.png"))); // NOI18N
         jButtonSair.setText("Sair");
+        jButtonSair.setActionCommand("0");
 
         jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Load.png"))); // NOI18N
         jButtonGravar.setText("Gravar");
+        jButtonGravar.setActionCommand("1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,13 +200,13 @@ public class TelaCadastroVaga extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jButtonNovo)
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(jButtonCancelar)
-                .addGap(21, 21, 21)
-                .addComponent(jButtonGravar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGravar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonBuscar)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonSair)
                 .addGap(97, 97, 97))
         );

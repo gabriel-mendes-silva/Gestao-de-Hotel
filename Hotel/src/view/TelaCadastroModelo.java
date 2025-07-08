@@ -5,6 +5,12 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author aluno
@@ -18,6 +24,76 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public JButton getjButtonBuscar() {
+        return jButtonBuscar;
+    }
+
+    public JButton getjButtonCancelar() {
+        return jButtonCancelar;
+    }
+
+    public JButton getjButtonGravar() {
+        return jButtonGravar;
+    }
+
+    public JButton getjButtonNovo() {
+        return jButtonNovo;
+    }
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
+    }
+
+    public JComboBox<String> getjComboBox1() {
+        return jComboBox1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getjLabelDescricao() {
+        return jLabelDescricao;
+    }
+
+    public JLabel getjLabelId() {
+        return jLabelId;
+    }
+
+    public JLabel getjLabelMarca() {
+        return jLabelMarca;
+    }
+
+    public JLabel getjLabelStatus() {
+        return jLabelStatus;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public JTextField getjTextFieldDescricao() {
+        return jTextFieldDescricao;
+    }
+
+    public JTextField getjTextFieldId() {
+        return jTextFieldId;
+    }
+
+    public JTextField getjTextFieldStatus() {
+        return jTextFieldStatus;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +154,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
 
         jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Create.png"))); // NOI18N
         jButtonNovo.setText("Novo");
+        jButtonNovo.setActionCommand("0");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
@@ -86,15 +163,19 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
 
         jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setActionCommand("1");
 
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find.png"))); // NOI18N
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setActionCommand("0");
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Exit.png"))); // NOI18N
         jButtonSair.setText("Sair");
+        jButtonSair.setActionCommand("0");
 
         jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Load.png"))); // NOI18N
         jButtonGravar.setText("Gravar");
+        jButtonGravar.setActionCommand("1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

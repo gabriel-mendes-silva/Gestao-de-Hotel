@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.TelaBuscaHospede;
 import view.TelaCadastroHospede;
 
 public class ControllerCadHospede implements ActionListener {
@@ -42,6 +43,9 @@ public class ControllerCadHospede implements ActionListener {
             utilities.Utilities.limpaComponentes(this.telaCadastroHospede.getjPanel2(), false);
         }
         if (evento.getSource() == this.telaCadastroHospede.getjButtonBuscar()) {
+            TelaBuscaHospede busca = new TelaBuscaHospede(null,true);
+            ControllerBuscaHospede contr = new ControllerBuscaHospede(busca);
+            busca.setVisible(true);
 
         }
         if (evento.getSource() == this.telaCadastroHospede.getjButtonSair()) {

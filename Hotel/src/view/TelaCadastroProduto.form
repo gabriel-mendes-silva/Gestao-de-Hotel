@@ -91,7 +91,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Servi&#xe7;o"/>
+            <Property name="text" type="java.lang.String" value="Produto"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -147,6 +147,7 @@
               <Image iconType="3" name="/imagens/Create.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Novo"/>
+            <Property name="actionCommand" type="java.lang.String" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovoActionPerformed"/>
@@ -158,6 +159,7 @@
               <Image iconType="3" name="/imagens/Cancel.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="actionCommand" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBuscar">
@@ -166,6 +168,7 @@
               <Image iconType="3" name="/imagens/Find.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="actionCommand" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSair">
@@ -174,6 +177,7 @@
               <Image iconType="3" name="/imagens/Exit.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="actionCommand" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGravar">
@@ -182,6 +186,7 @@
               <Image iconType="3" name="/imagens/Load.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gravar"/>
+            <Property name="actionCommand" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
       </SubComponents>

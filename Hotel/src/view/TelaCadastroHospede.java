@@ -22,6 +22,7 @@ public class TelaCadastroHospede extends javax.swing.JDialog {
     public TelaCadastroHospede(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     public JPanel getjPanel2() {

@@ -5,6 +5,15 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author aluno
@@ -195,6 +204,7 @@ public class TelaBuscaHospede extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarregarActionPerformed
@@ -249,6 +259,68 @@ public class TelaBuscaHospede extends javax.swing.JDialog {
             }
         });
     }
+
+    public JButton getjButtonBuscar() {
+        return jButtonBuscar;
+    }
+
+    public JButton getjButtonCarregar() {
+        return jButtonCarregar;
+    }
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
+    }
+
+    public JComboBox<String> getjComboBoxBusca() {
+        return jComboBoxBusca;
+    }
+
+    public JLabel getjLabelFiltro() {
+        return jLabelFiltro;
+    }
+
+    public JLabel getjLabelTitulo() {
+        return jLabelTitulo;
+    }
+
+    public JLabel getjLabelValor() {
+        return jLabelValor;
+    }
+
+    public JMenu getjMenu1() {
+        return jMenu1;
+    }
+
+    public JMenu getjMenu2() {
+        return jMenu2;
+    }
+
+    public JPanel getjPanelBusca() {
+        return jPanelBusca;
+    }
+
+    public JPanel getjPanelDados() {
+        return jPanelDados;
+    }
+
+    public JPanel getjPanelTitulo() {
+        return jPanelTitulo;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JTable getjTableDados() {
+        return jTableDados;
+    }
+
+    public JTextField getjTextFieldValor() {
+        return jTextFieldValor;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
