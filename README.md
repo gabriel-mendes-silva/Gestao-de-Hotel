@@ -1,2 +1,2 @@
 # Gestao-de-Hotel
-Projeto para gestão de hotéis desenvolvido em 100% em Java.
+Projeto para gestão de hotéis desenvolvido 100% em Java.
