@@ -102,6 +102,7 @@ public class TelaBuscaServico extends javax.swing.JDialog {
         });
 
         jComboBoxBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Descrição", "Status" }));
+        jComboBoxBusca.setSelectedIndex(-1);
 
         jLabelFiltro.setText("Filtrar por");
 

@@ -65,7 +65,7 @@ public class TelaBuscaVaga extends javax.swing.JDialog {
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Hóspede");
+        jLabelTitulo.setText("Vaga");
         jLabelTitulo.setToolTipText("");
 
         javax.swing.GroupLayout jPanelTituloLayout = new javax.swing.GroupLayout(jPanelTitulo);
@@ -102,6 +102,7 @@ public class TelaBuscaVaga extends javax.swing.JDialog {
         });
 
         jComboBoxBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Descrição", "Metragem", "Status" }));
+        jComboBoxBusca.setSelectedIndex(-1);
 
         jLabelFiltro.setText("Filtrar por");
 

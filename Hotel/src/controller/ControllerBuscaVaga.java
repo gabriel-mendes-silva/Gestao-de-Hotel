@@ -43,13 +43,14 @@ public class ControllerBuscaVaga implements ActionListener{
             else{
                 JOptionPane.showMessageDialog(null,"Filtrando informações");
                 if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 0){
+                    
                     JOptionPane.showMessageDialog(null, "Filtrando por ID");
                 }
                 if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                    JOptionPane.showMessageDialog(null, "Filtrando por Descrição");
                 }
                 if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                    JOptionPane.showMessageDialog(null, "Filtrando por Metragem");
                 }
                 if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 3){
                     JOptionPane.showMessageDialog(null, "Filtrando por Status");

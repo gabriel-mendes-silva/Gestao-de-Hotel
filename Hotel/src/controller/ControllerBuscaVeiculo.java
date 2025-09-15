@@ -42,18 +42,8 @@ public class ControllerBuscaVeiculo implements ActionListener{
             }
             else{
                 JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaVeiculo.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
-                }
-                if(this.telaBuscaVeiculo.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
-                }
-                if(this.telaBuscaVeiculo.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
-                }
-                if(this.telaBuscaVeiculo.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
-                }
+                JOptionPane.showMessageDialog(null, "Filtrando por " + this.telaBuscaVeiculo.getjComboBoxBusca().getItemAt(this.telaBuscaVeiculo.getjComboBoxBusca().getSelectedIndex()));
+               
                 
             }
         }

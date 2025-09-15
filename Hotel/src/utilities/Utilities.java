@@ -6,12 +6,15 @@
 package utilities;
 
 import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -36,6 +39,7 @@ public class Utilities {
     
     public static void limpaComponentes(JPanel painel, boolean ativa){
          Component [] vetComponentes = painel.getComponents();
+         
         for(Component componenteAtual : vetComponentes){
             if(componenteAtual instanceof JTextField){
                 ((JTextField) componenteAtual).setText("");
@@ -49,11 +53,18 @@ public class Utilities {
                 ((JComboBox) componenteAtual).setSelectedIndex(-1);
                  componenteAtual.setEnabled(ativa);
             }
-            else if(componenteAtual instanceof JTextArea){
-                ((JTextArea)componenteAtual).setText("");
-                
-              
-                
+            else if (componenteAtual instanceof JScrollPane) {
+                JScrollPane scroll = (JScrollPane) componenteAtual;
+                Component view = scroll.getViewport().getView(); // Aqui está a JTextArea!
+    
+                if (view instanceof JTextArea) {
+                    ((JTextArea) view).setText("");
+                    ((JTextArea) view).setEnabled(ativa);
+                }
+            }
+            else if(componenteAtual instanceof JRadioButton){
+                ((JRadioButton)componenteAtual).setSelected(false);
+                componenteAtual.setEnabled(ativa);
             }
             else if(componenteAtual instanceof JCheckBox){
                 ((JCheckBox)componenteAtual).setSelected(false);
