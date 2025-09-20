@@ -32,5 +32,10 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
     public void deletar(Fornecedor fornecedor) {
 
     }
+
+    @Override
+    public Fornecedor buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

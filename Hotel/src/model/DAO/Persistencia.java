@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface Persistencia <T> {
     void inserir(T t);
+    T buscar(int id);
     List<T> buscar(String atributo, String valor);
     void atualizar(T t);
     void deletar(T t);

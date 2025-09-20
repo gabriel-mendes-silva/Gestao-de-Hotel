@@ -16,6 +16,7 @@ public class Hospede extends Pessoa{
         this.contato = contato;
     }
 
+    
     public String getRazaoSocial() {
         return razaoSocial;
     }
@@ -52,7 +53,7 @@ public class Hospede extends Pessoa{
     public String toString() {
         return  super.toString() + 
                 "\ncnpj   = " + this.getCnpj()+
-                "\nCep    = " + this.getCnpj()+
+                "\nCep    = " + this.getCep()+
                 "\nCidade = " + this.getCidade()+
                 "\nBairro = " + this.getBairro()+
                 "\nLogradouro = " + this.getLogradouro()+

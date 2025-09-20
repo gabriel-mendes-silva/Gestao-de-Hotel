@@ -32,5 +32,10 @@ public class MarcaMySQL implements Persistencia <Marca>{
     public void deletar(Marca marca) {
 
     }
+
+    @Override
+    public Marca buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

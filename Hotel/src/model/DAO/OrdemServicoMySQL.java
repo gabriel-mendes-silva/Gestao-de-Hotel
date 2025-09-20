@@ -32,5 +32,10 @@ public class OrdemServicoMySQL implements Persistencia <OrdemServico>{
     public void deletar(OrdemServico ordemServico) {
 
     }
+
+    @Override
+    public OrdemServico buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

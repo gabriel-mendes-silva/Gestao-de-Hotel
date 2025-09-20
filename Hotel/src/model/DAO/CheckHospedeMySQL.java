@@ -32,5 +32,10 @@ public class CheckHospedeMySQL implements Persistencia <CheckHospede>{
     public void deletar(CheckHospede checkHospede) {
 
     }
+
+    @Override
+    public CheckHospede buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

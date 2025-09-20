@@ -32,5 +32,10 @@ public class ServicoMySQL implements Persistencia <Servico>{
     public void deletar(Servico servico) {
         
     }
+
+    @Override
+    public Servico buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

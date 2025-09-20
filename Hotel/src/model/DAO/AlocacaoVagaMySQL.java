@@ -32,5 +32,10 @@ public class AlocacaoVagaMySQL implements Persistencia <AlocacaoVaga>{
     public void deletar(AlocacaoVaga alocacaoVaga) {
 
     }
+
+    @Override
+    public AlocacaoVaga buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -32,5 +32,10 @@ public class CheckQuartoMySQL implements Persistencia <CheckQuarto>{
     public void deletar(CheckQuarto checkQuarto) {
 
     }
+
+    @Override
+    public CheckQuarto buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

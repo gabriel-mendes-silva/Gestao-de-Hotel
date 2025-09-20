@@ -32,5 +32,10 @@ public class CaixaMySQL implements Persistencia <Caixa>{
     public void deletar(Caixa caixa) {
 
     }
+
+    @Override
+    public Caixa buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

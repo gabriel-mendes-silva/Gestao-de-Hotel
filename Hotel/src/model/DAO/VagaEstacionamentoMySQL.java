@@ -32,5 +32,10 @@ public class VagaEstacionamentoMySQL implements Persistencia <VagaEstacionamento
     public void deletar(VagaEstacionamento vagaEstacionamento) {
         
     }
+
+    @Override
+    public VagaEstacionamento buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

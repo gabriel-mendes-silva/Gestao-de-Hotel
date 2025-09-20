@@ -32,5 +32,10 @@ public class CheckMySQL implements Persistencia <Check>{
     public void deletar(Check check) {
 
     }
+
+    @Override
+    public Check buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

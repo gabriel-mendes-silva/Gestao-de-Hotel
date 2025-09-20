@@ -19,21 +19,20 @@ public class ConnectionFactory {
     private static final String usuario = System.getenv("MySQL_USER");
     private static final String senha = System.getenv("MySQL_PASSWORD");
     
-    static Connection getConnection(){
-        try{
+    public static Connection getConnection() {
+
+        try {
             return DriverManager.getConnection(banco + "?verifyServerCertificate=false"
                     + "&useSSL=false"
                     + "&requireSSL=false"
                     + "&USER=" + usuario + "&password=" + senha + "&serverTimezone=UTC");
-
-        }
-        catch(SQLException e){
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
     
-    private static void closeConnection(Connection connection){
+    public static void closeConnection(Connection connection){
         try{
             connection.close();
         }
@@ -43,7 +42,7 @@ public class ConnectionFactory {
   
     }
     
-    private static void closeConnection(Connection connection, PreparedStatement pstm){
+    public static void closeConnection(Connection connection, PreparedStatement pstm){
         try{
             pstm.close();
             connection.close();
@@ -53,10 +52,10 @@ public class ConnectionFactory {
         }
     }
     
-      private static void closeConnection(Connection connection, PreparedStatement pstm, ResultSet rs){
+      public static void closeConnection(Connection connection, PreparedStatement pstm, ResultSet rs){
         try{
-            rs.close();
             pstm.close();
+            rs.close();
             connection.close();
         }
         catch(SQLException e){

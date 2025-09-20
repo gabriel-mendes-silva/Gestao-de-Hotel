@@ -32,5 +32,10 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
     public void deletar(Funcionario funcionario) {
 
     }
+
+    @Override
+    public Funcionario buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

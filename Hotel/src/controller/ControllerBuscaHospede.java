@@ -7,6 +7,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.bo.Hospede;
 import view.TelaBuscaHospede;
 
 /**
@@ -26,24 +28,33 @@ public class ControllerBuscaHospede implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
+        
         if(evento.getSource() == this.telaBuscaHospede.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
             if(this.telaBuscaHospede.getjTableDados().getRowCount() == 0){
                 JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+                ControllerCadHospede.codigo = (int) this.telaBuscaHospede.getjTableDados()
+                        .getValueAt(this.telaBuscaHospede.getjTableDados().getSelectedRow(), 0);
+                this.telaBuscaHospede.dispose();
             }
         }
         else if(evento.getSource() == this.telaBuscaHospede.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
+            
             if(this.telaBuscaHospede.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
             }
             else{
                 JOptionPane.showMessageDialog(null,"Filtrando informações");
                 if(this.telaBuscaHospede.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+                    Hospede hospede = new Hospede();
+                    
+                    hospede = service.HospedeService.carregar(Integer.parseInt(this.telaBuscaHospede.getjTextFieldValor().getText()));
+                    
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaHospede.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+                    
+                    tabela.addRow(new Object[]{hospede.getId(), hospede.getNome(), hospede.getCpf(), hospede.getStatus()});
                 }
                 if(this.telaBuscaHospede.getjComboBoxBusca().getSelectedIndex() == 1){
                     JOptionPane.showMessageDialog(null, "Filtrando por Nome");

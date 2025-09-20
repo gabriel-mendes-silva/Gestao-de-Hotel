@@ -32,5 +32,10 @@ public class ReceberMySQL implements Persistencia<Receber> {
     public void deletar(Receber receber) {
 
     }
+
+    @Override
+    public Receber buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

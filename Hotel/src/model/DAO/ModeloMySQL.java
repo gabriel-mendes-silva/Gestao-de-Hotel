@@ -32,5 +32,10 @@ public class ModeloMySQL implements Persistencia <Modelo>{
     public void deletar(Modelo modelo) {
 
     }
+
+    @Override
+    public Modelo buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

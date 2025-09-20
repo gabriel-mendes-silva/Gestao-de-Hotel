@@ -32,5 +32,10 @@ public class ProdutoCopaMySQL implements Persistencia <ProdutoCopa> {
     public void deletar(ProdutoCopa produtoCopa) {
 
     }
+
+    @Override
+    public ProdutoCopa buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

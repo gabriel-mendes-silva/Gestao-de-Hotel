@@ -32,5 +32,10 @@ public class ReservaMySQL implements Persistencia <Reserva>{
     public void deletar(Reserva reserva) {
 
     }
+
+    @Override
+    public Reserva buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

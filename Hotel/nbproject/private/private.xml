@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/HospedeMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroFornecedor.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Quarto.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/VagaEstacionamento.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Hospede.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/ReservaQuarto.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/controller/ControllerCadHospede.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Receber.java</file>
+            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Servico.java</file>
             <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroHospede.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/Persistencia.java</file>
         </group>
     </open-files>
 </project-private>

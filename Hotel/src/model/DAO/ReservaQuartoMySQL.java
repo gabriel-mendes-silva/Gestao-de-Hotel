@@ -32,5 +32,10 @@ public class ReservaQuartoMySQL implements Persistencia <ReservaQuarto>{
     public void deletar(ReservaQuarto reservaQuarto) {
         
     }
+
+    @Override
+    public ReservaQuarto buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
