@@ -13,7 +13,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.bo.SexoEmpty;
+import model.bo.SexoNullable;
+import model.bo.SexoValido;
 import utilities.HospedeBuilder;
+
 /**
  *
  * @author GABRIEL
@@ -39,14 +43,13 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + "OBS, "
                 + "STATUS, "
                 + "RAZAO_SOCIAL, "
-                + "CNPJ,"
+                + "CNPJ, "
                 + "INSCRICAO_ESTADUAL, "
-                + "CONTATO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "CONTATO, "
+                + "SEXO) VALUES (?,?,?,?,?,?,?,?,?,STR_TO_DATE(?,'%d/%m/%Y')"
+                + ",?,?,?,?,?,?,?,?,?)";
 
-        
-        
-        try(Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        try (Connection conexao = ConnectionFactory.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, hospede.getNome());
             stmt.setString(2, hospede.getFone1());
@@ -66,17 +69,18 @@ public class HospedeMySQL implements Persistencia<Hospede> {
             stmt.setString(16, hospede.getCnpj());
             stmt.setString(17, hospede.getInscricaoEstadual());
             stmt.setString(18, hospede.getContato());
+            stmt.setString(19, hospede.getSexo());
 
             stmt.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-       
+
     }
-    
-     @Override
+
+    @Override
     public Hospede buscar(int id) {
-        
+
         String sql = "SELECT "
                 + " ID,"
                 + " NOME,"
@@ -96,57 +100,62 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " RAZAO_SOCIAL,"
                 + " CNPJ,"
                 + " INSCRICAO_ESTADUAL,"
-                + " CONTATO"
+                + " CONTATO,"
+                + " SEXO"
                 + " FROM HOSPEDE"
                 + " WHERE ID = ?";
-      
-        
-        try(Connection connection = ConnectionFactory.getConnection();
-            PreparedStatement pstm = connection.prepareStatement(sql)){
-           
+
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
+
             pstm.setInt(1, id);
-            try(ResultSet resultSet = pstm.executeQuery()){
-                if(resultSet.next()){
-                    Hospede hospede = new Hospede();
-                    hospede.setId(resultSet.getInt("ID"));
-                    hospede.setNome(resultSet.getString("NOME"));
-                    hospede.setFone1(resultSet.getString("FONE"));
-                    hospede.setFone2(resultSet.getString("FONE2"));
-                    hospede.setEmail(resultSet.getString("EMAIL"));
-                    hospede.setCep(resultSet.getString("CEP"));
-                    hospede.setLogradouro(resultSet.getString("LOGRADOURO"));
-                    hospede.setBairro(resultSet.getString("BAIRRO"));
-                    hospede.setCidade(resultSet.getString("CIDADE"));
-                    hospede.setComplemento(resultSet.getString("COMPLEMENTO"));
-                    hospede.setDataCadastro(resultSet.getString("DATA_CADASTRO"));
-                    hospede.setCpf(resultSet.getString("CPF"));
-                    hospede.setRg(resultSet.getString("RG"));
-                    hospede.setObs(resultSet.getString("OBS"));
-                    hospede.setStatus(resultSet.getString("STATUS").charAt(0));
-                    hospede.setRazaoSocial(resultSet.getString("RAZAO_SOCIAL"));
-                    hospede.setCnpj(resultSet.getString("CNPJ"));
-                    hospede.setInscricaoEstadual(resultSet.getString("INSCRICAO_ESTADUAL"));
-                    hospede.setContato(resultSet.getString("CONTATO"));
+            try (ResultSet resultSet = pstm.executeQuery()) {
+                if (resultSet.next()) {
+                    Hospede hospede = new HospedeBuilder()
+                            .setId(resultSet.getInt("ID"))
+                            .setNome(resultSet.getString("NOME"))
+                            .setTelefone(resultSet.getString("FONE"))
+                            .setTelefoneReserva(resultSet.getString("FONE2"))
+                            .setEmail(resultSet.getString("EMAIL"))
+                            .setCep(resultSet.getString("CEP"))
+                            .setLogradouro(resultSet.getString("LOGRADOURO"))
+                            .setBairro(resultSet.getString("BAIRRO"))
+                            .setCidade(resultSet.getString("CIDADE"))
+                            .setComplemento(resultSet.getString("COMPLEMENTO"))
+                            .setDataCadastro(resultSet.getString("DATA_CADASTRO"))
+                            .setCpf(resultSet.getString("CPF"))
+                            .setRg(resultSet.getString("RG"))
+                            .setObs(resultSet.getString("OBS"))
+                            .setStatus(resultSet.getString("STATUS").charAt(0))
+                            .setRazaoSocial(resultSet.getString("RAZAO_SOCIAL"))
+                            .setCnpj(resultSet.getString("CNPJ"))
+                            .setInscricaoEstadual(resultSet.getString("INSCRICAO_ESTADUAL"))
+                            .setContato(resultSet.getString("CONTATO"))
+                            .setSexo(
+                                    new SexoEmpty(
+                                            new SexoValido(resultSet.getString("SEXO")
+                                            )
+                                    )
+                            )
+                            .build();
+
                     return hospede;
-                }
-                else{
+                } else {
                     return null;
                 }
             }
-            
-        }
-        catch(SQLException ex){
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return null;
-        
+
     }
-    
+
     @Override
     public List<Hospede> buscar(String atributo, String valor) {
         ArrayList<Hospede> hospedes = new ArrayList<>();
-        
+
         String sql = "SELECT "
                 + " ID,"
                 + " NOME,"
@@ -166,51 +175,57 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " RAZAO_SOCIAL,"
                 + " CNPJ,"
                 + " INSCRICAO_ESTADUAL,"
-                + " CONTATO"
+                + " CONTATO,"
+                + " SEXO"
                 + " FROM HOSPEDE"
                 + " WHERE " + atributo + " LIKE ?";
-        
-        try(Connection connection = ConnectionFactory.getConnection();
-                PreparedStatement pstmt = connection.prepareStatement(sql)){
-            
+
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
             pstmt.setString(1, "%" + valor + "%");
-            try(ResultSet resultSet = pstmt.executeQuery()){
-                while(resultSet.next()){
-                    Hospede hospede = new Hospede();
-                    hospede.setId(resultSet.getInt("ID"));
-                    hospede.setNome(resultSet.getString("NOME"));
-                    hospede.setFone1(resultSet.getString("FONE"));
-                    hospede.setFone2(resultSet.getString("FONE2"));
-                    hospede.setEmail(resultSet.getString("EMAIL"));
-                    hospede.setCep(resultSet.getString("CEP"));
-                    hospede.setLogradouro(resultSet.getString("LOGRADOURO"));
-                    hospede.setBairro(resultSet.getString("BAIRRO"));
-                    hospede.setCidade(resultSet.getString("CIDADE"));
-                    hospede.setComplemento(resultSet.getString("COMPLEMENTO"));
-                    hospede.setDataCadastro(resultSet.getString("DATA_CADASTRO"));
-                    hospede.setCpf(resultSet.getString("CPF"));
-                    hospede.setRg(resultSet.getString("RG"));
-                    hospede.setObs(resultSet.getString("OBS"));
-                    hospede.setStatus(resultSet.getString("STATUS").charAt(0));
-                    hospede.setRazaoSocial(resultSet.getString("RAZAO_SOCIAL"));
-                    hospede.setCnpj(resultSet.getString("CNPJ"));
-                    hospede.setInscricaoEstadual(resultSet.getString("INSCRICAO_ESTADUAL"));
-                    hospede.setContato(resultSet.getString("CONTATO"));
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Hospede hospede = new HospedeBuilder()
+                            .setId(resultSet.getInt("ID"))
+                            .setNome(resultSet.getString("NOME"))
+                            .setTelefone(resultSet.getString("FONE"))
+                            .setTelefoneReserva(resultSet.getString("FONE2"))
+                            .setEmail(resultSet.getString("EMAIL"))
+                            .setCep(resultSet.getString("CEP"))
+                            .setLogradouro(resultSet.getString("LOGRADOURO"))
+                            .setBairro(resultSet.getString("BAIRRO"))
+                            .setCidade(resultSet.getString("CIDADE"))
+                            .setComplemento(resultSet.getString("COMPLEMENTO"))
+                            .setDataCadastro(resultSet.getString("DATA_CADASTRO"))
+                            .setCpf(resultSet.getString("CPF"))
+                            .setRg(resultSet.getString("RG"))
+                            .setObs(resultSet.getString("OBS"))
+                            .setStatus(resultSet.getString("STATUS").charAt(0))
+                            .setRazaoSocial(resultSet.getString("RAZAO_SOCIAL"))
+                            .setCnpj(resultSet.getString("CNPJ"))
+                            .setInscricaoEstadual(resultSet.getString("INSCRICAO_ESTADUAL"))
+                            .setContato(resultSet.getString("CONTATO"))
+                            .setSexo(
+                                    new SexoEmpty(
+                                            new SexoValido(resultSet.getString("SEXO")
+                                            )
+                                    )
+                            )
+                            .build();
                     hospedes.add(hospede);
                 }
             }
-            
-        
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return hospedes;
     }
 
     @Override
     public void atualizar(Hospede hospede) {
-        
+
         String sql = "UPDATE HOSPEDE"
                 + " SET"
                 + " NOME = ?,"
@@ -230,12 +245,12 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " RAZAO_SOCIAL = ?,"
                 + " CNPJ = ?,"
                 + " INSCRICAO_ESTADUAL = ?,"
-                + " CONTATO = ?"
+                + " CONTATO = ?,"
+                + " SEXO = ?"
                 + " WHERE ID = ?";
-        
-        try(Connection connection = ConnectionFactory.getConnection();
-                PreparedStatement stmt = connection.prepareStatement(sql)){
-            
+
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+
             stmt.setString(1, hospede.getNome());
             stmt.setString(2, hospede.getFone1());
             stmt.setString(3, hospede.getFone2());
@@ -254,15 +269,15 @@ public class HospedeMySQL implements Persistencia<Hospede> {
             stmt.setString(16, hospede.getCnpj());
             stmt.setString(17, hospede.getInscricaoEstadual());
             stmt.setString(18, hospede.getContato());
-            stmt.setInt(19, hospede.getId());
-            
+            stmt.setString(19, hospede.getSexo());
+            stmt.setInt(20, hospede.getId());
+
             stmt.execute();
-            
-        }
-        catch(SQLException ex){
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-                
+
     }
 
     @Override

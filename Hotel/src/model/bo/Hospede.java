@@ -4,18 +4,29 @@ public class Hospede extends Pessoa{
     private String cnpj;
     private String inscricaoEstadual;
     private String contato;
+    private Sexo sexo;
 
+    @Deprecated
     public Hospede() {
     }
 
-    public Hospede( int id, String nome, String fone1, String fone2, String email, String cep, String logradouro, String bairro, String cidade, String complemento, String dataCadastro, String cpf, String rg, String razaoSocial, String cnpj, String inscricaoEstadual, String contato, String obs, char status) {
+    @Deprecated
+    public Hospede( int id, String nome, String fone1, String fone2, String email, String cep, String logradouro, String bairro, String cidade, String complemento, String dataCadastro, String cpf, String rg, String razaoSocial, String cnpj, String inscricaoEstadual, String contato, String obs, char status, Sexo sexo) {
         super(id, nome, fone1, fone2, email, cep, logradouro, bairro, cidade, complemento, dataCadastro, cpf, rg, obs, status);
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.inscricaoEstadual = inscricaoEstadual;
         this.contato = contato;
+        this.sexo = sexo;
     }
 
+    public String getSexo(){
+       return this.sexo.getSexo();
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
     
     public String getRazaoSocial() {
         return razaoSocial;
@@ -52,6 +63,7 @@ public class Hospede extends Pessoa{
     @Override
     public String toString() {
         return  super.toString() + 
+                "\nsexo   = " + this.getSexo() +
                 "\ncnpj   = " + this.getCnpj()+
                 "\nCep    = " + this.getCep()+
                 "\nCidade = " + this.getCidade()+

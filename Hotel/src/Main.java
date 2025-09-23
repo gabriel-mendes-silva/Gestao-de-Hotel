@@ -1,7 +1,21 @@
 
 import controller.ControllerCadModelo;
+import java.util.ArrayList;
+import java.util.List;
+import model.DAO.FornecedorMySQL;
+import model.DAO.FuncionarioMySQL;
 import model.DAO.HospedeMySQL;
+import model.DAO.MarcaMySQL;
+import model.DAO.ModeloMySQL;
+import model.DAO.VeiculoMySQL;
+import model.bo.Fornecedor;
+import model.bo.Funcionario;
 import model.bo.Hospede;
+import model.bo.Marca;
+import model.bo.Modelo;
+import model.bo.SexoNullable;
+import model.bo.SexoValido;
+import model.bo.Veiculo;
 import utilities.HospedeBuilder;
 import view.TelaCadastroHospede;
 
@@ -16,35 +30,37 @@ import view.TelaCadastroHospede;
 public class Main {
 
     public static void main(String[] args) {
-        HospedeMySQL hospedeMySQL = new HospedeMySQL();
-        /*
-        Hospede hospede = new HospedeBuilder()
-            .setId(1)
-            .setNome("João da Silva")
-            .setTelefone("11999998888")
-            .setTelefoneReserva("11888887777")
-            .setEmail("joao.silva@email.com")
-            .setCep("01234-567")
-            .setLogradouro("Rua das Flores, 123")
-            .setBairro("Centro")
-            .setCidade("São Paulo")
-            .setComplemento("Apto 45")
-            .setDataCadastro("2025-09-15")
-            .setCpf("123.456.789-00")
-            .setRg("12.345.678-9")
-            .setObs("Cliente VIP")
-            .setStatus('A') // Ativo
-            .setRazaoSocial("João da Silva ME")
-            .setCnpj("12.345.678/0001-99")
-            .setInscricaoEstadual("1234567890")
-            .setContato("Maria Fernanda")
-            .build();
-        
-        hospedeMySQL.inserir(hospede);*/
-        Hospede hospede = hospedeMySQL.buscar(12);
-        System.out.println(hospede);
 
-    
+        // Instanciando a classe MarcaMySQL
+        MarcaMySQL marcaDAO = new MarcaMySQL();
+        ModeloMySQL modeloDAO = new ModeloMySQL();
+        VeiculoMySQL veiculoDAO = new VeiculoMySQL();
+        HospedeMySQL hospedeDAO = new HospedeMySQL();
+        FuncionarioMySQL funcionarioDAO = new FuncionarioMySQL();
+        FornecedorMySQL fornecedorDAO = new FornecedorMySQL();
+        
+        
+        Veiculo veiculo = new Veiculo();
+        veiculo.setCor("Vermelho");
+        veiculo.setModelo(modeloDAO.buscar(2));
+        veiculo.setPlaca("1234567");
+        veiculo.setStatus('A');
+        veiculo.setHospede(hospedeDAO.buscar(14));
+
+        veiculoDAO.inserir(veiculo);
+        
+        /*
+        List<Modelo> modelos = new ArrayList<>();
+        modelos = modeloDAO.buscar("descricao", "Sedan");
+        System.out.println(modelos);
+        
+        Modelo modelo2 = modeloDAO.buscar(2);
+        modelo2.setDescricao("SUV");
+        modeloDAO.atualizar(modelo2);
+*/
+        
+        
+        
 
     }
 }

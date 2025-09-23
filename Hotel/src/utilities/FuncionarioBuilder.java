@@ -4,7 +4,7 @@
  */
 package utilities;
 
-import model.bo.Hospede;
+import model.bo.Funcionario;
 import model.bo.Sexo;
 import model.bo.SexoNullable;
 import model.bo.SexoNulo;
@@ -13,7 +13,7 @@ import model.bo.SexoNulo;
  *
  * @author GABRIEL
  */
-public class HospedeBuilder {
+public class FuncionarioBuilder {
     private int id;
     private String nome;
     private String fone1;
@@ -29,120 +29,110 @@ public class HospedeBuilder {
     private String rg;
     private String obs;
     private char status;
-    private String razaoSocial;
-    private String cnpj;
-    private String inscricaoEstadual;
-    private String contato;
+    private String usuario;
+    private String senha;
     private Sexo sexo;
     
-    public HospedeBuilder(){
+    public FuncionarioBuilder(){
         this.sexo = new SexoNulo();
     }
 
-    public HospedeBuilder setId(int id) {
+    public FuncionarioBuilder setId(int id) {
         this.id = id;
         return this;   
     }
 
-    public HospedeBuilder setNome(String nome) {
+    public FuncionarioBuilder setNome(String nome) {
         this.nome = nome;
         return this;
     }
 
-    public HospedeBuilder setTelefone(String fone1) {
+    public FuncionarioBuilder setTelefone(String fone1) {
         this.fone1 = fone1;
         return this;
     }
 
-    public HospedeBuilder setTelefoneReserva(String fone2) {
+    public FuncionarioBuilder setTelefoneReserva(String fone2) {
         this.fone2 = fone2;
         return this;
     }
 
-    public HospedeBuilder setEmail(String email) {
+    public FuncionarioBuilder setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public HospedeBuilder setCep(String cep) {
+    public FuncionarioBuilder setCep(String cep) {
         this.cep = cep;
         return this;
     }
 
-    public HospedeBuilder setLogradouro(String logradouro) {
+    public FuncionarioBuilder setLogradouro(String logradouro) {
         this.logradouro = logradouro;
         return this;
     }
 
-    public HospedeBuilder setBairro(String bairro) {
+    public FuncionarioBuilder setBairro(String bairro) {
         this.bairro = bairro;
         return this;
     }
 
-    public HospedeBuilder setCidade(String cidade) {
+    public FuncionarioBuilder setCidade(String cidade) {
         this.cidade = cidade;
         return this;
     }
 
-    public HospedeBuilder setComplemento(String complemento) {
+    public FuncionarioBuilder setComplemento(String complemento) {
         this.complemento = complemento;
         return this;
     }
 
-    public HospedeBuilder setDataCadastro(String dataCadastro) {
+    public FuncionarioBuilder setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
         return this;
     }
 
-    public HospedeBuilder setCpf(String cpf) {
+    public FuncionarioBuilder setCpf(String cpf) {
         this.cpf = cpf;
         return this;
     }
 
-    public HospedeBuilder setRg(String rg) {
+    public FuncionarioBuilder setRg(String rg) {
         this.rg = rg;
         return this;
     }
 
-    public HospedeBuilder setObs(String obs) {
+    public FuncionarioBuilder setObs(String obs) {
         this.obs = obs;
         return this;
     }
 
-    public HospedeBuilder setStatus(char status) {
+    public FuncionarioBuilder setStatus(char status) {
         this.status = status;
         return this;
     }
 
-    public HospedeBuilder setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public FuncionarioBuilder setUsuario(String usuario) {
+        this.usuario = usuario;
         return this;
     }
 
-    public HospedeBuilder setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public FuncionarioBuilder setSenha(String senha) {
+        this.senha = senha;
         return this;
     }
 
-    public HospedeBuilder setInscricaoEstadual(String inscricaoEstadual) {
-        this.inscricaoEstadual = inscricaoEstadual;
-        return this;
-    }
-
-    public HospedeBuilder setContato(String contato) {
-        this.contato = contato;
-        return this;
-    }
     
-    public HospedeBuilder setSexo(Sexo sexo){
+    
+    public FuncionarioBuilder setSexo(Sexo sexo){
         this.sexo = sexo;
         return this;
     }
     
-    public Hospede build(){
+    public Funcionario build(){
         
         
-        return new Hospede(
+        return new Funcionario(
                 id,
                 nome,
                 fone1,
@@ -156,10 +146,8 @@ public class HospedeBuilder {
                 dataCadastro,
                 cpf,
                 rg, 
-                razaoSocial,
-                cnpj, 
-                inscricaoEstadual,
-                contato,
+                usuario,
+                senha,
                 obs,
                 status,
                 sexo

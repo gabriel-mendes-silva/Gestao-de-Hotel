@@ -11,7 +11,7 @@ package model.bo;
  */
 public class CopaQuarto {
     private int id;
-    private float quantidade;
+    private int quantidade;
     private String dataHoraPedido;
     private String obs;
     private char status;
@@ -19,7 +19,7 @@ public class CopaQuarto {
     public CopaQuarto() {
     }
 
-    public CopaQuarto(int id, float quantidade, String dataHoraPedido, String obs, char status) {
+    public CopaQuarto(int id, int quantidade, String dataHoraPedido, String obs, char status) {
         this.id = id;
         this.quantidade = quantidade;
         this.dataHoraPedido = dataHoraPedido;
@@ -35,11 +35,11 @@ public class CopaQuarto {
         this.id = id;
     }
 
-    public float getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(float quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
