@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.bo.Marca;
 import model.bo.Modelo;
 import model.bo.Modelo;
 
@@ -43,24 +45,34 @@ public class ModeloMySQL implements Persistencia<Modelo> {
     @Override
     public Modelo buscar(int id) {
 
-        String sql = "SELECT"
-                + " ID,"
-                + " DESCRICAO,"
-                + " STATUS,"
-                + " MARCA_ID"
-                + " FROM modelo"
-                + " WHERE ID = ?";
+        String sql = "select " +
+                "modelo.id as modelo_id," +
+                "modelo.descricao as modelo_descricao, " +
+                "modelo.status as modelo_status, " +
+                "marca.id as marca_id, " +
+                "marca.descricao as marca_descricao, " +
+                "marca.status as marca_status " +
+                "from modelo " +
+                "inner join marca " +
+                "on modelo.marca_id = marca.id " +
+                "where modelo.id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
 
             pstm.setInt(1, id);
             try (ResultSet resultSet = pstm.executeQuery()) {
                 if (resultSet.next()) {
+                    Marca marca = new Marca(
+                            resultSet.getInt("marca_id"),
+                            resultSet.getString("marca_descricao"),
+                            resultSet.getString("marca_status").charAt(0)
+                    );
+
                     Modelo modelo = new Modelo(
-                            resultSet.getInt("ID"),
-                            resultSet.getString("DESCRICAO"),
-                            resultSet.getString("STATUS").charAt(0),
-                            new MarcaMySQL().buscar(resultSet.getInt("MARCA_ID"))
+                            resultSet.getInt("modelo_id"),
+                            resultSet.getString("modelo_descricao"),
+                            resultSet.getString("modelo_status").charAt(0),
+                            marca
                     );
 
                     return modelo;
@@ -81,24 +93,34 @@ public class ModeloMySQL implements Persistencia<Modelo> {
     public List<Modelo> buscar(String atributo, String valor) {
         ArrayList<Modelo> modelos = new ArrayList<>();
 
-        String sql = "SELECT"
-                + " ID,"
-                + " DESCRICAO,"
-                + " STATUS,"
-                + " MARCA_ID"
-                + " FROM modelo"
-                + " WHERE " + atributo + " LIKE ?";
+        String sql = "select " +
+                "modelo.id as modelo_id," +
+                "modelo.descricao as modelo_descricao, " +
+                "modelo.status as modelo_status, " +
+                "marca.id as marca_id, " +
+                "marca.descricao as marca_descricao, " +
+                "marca.status as marca_status " +
+                "from modelo " +
+                "inner join marca " +
+                "on modelo.marca_id = marca.id " +
+                "where " + atributo + " like ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setString(1, "%" + valor + "%");
             try (ResultSet resultSet = pstmt.executeQuery()) {
                 while (resultSet.next()) {
+                    Marca marca = new Marca(
+                            resultSet.getInt("marca_id"),
+                            resultSet.getString("marca_descricao"),
+                            resultSet.getString("marca_status").charAt(0)
+                    );
+
                     Modelo modelo = new Modelo(
-                            resultSet.getInt("ID"),
-                            resultSet.getString("DESCRICAO"),
-                            resultSet.getString("STATUS").charAt(0),
-                            new MarcaMySQL().buscar(resultSet.getInt("MARCA_ID"))
+                            resultSet.getInt("modelo_id"),
+                            resultSet.getString("modelo_descricao"),
+                            resultSet.getString("modelo_status").charAt(0),
+                            marca
                     );
                     modelos.add(modelo);
                 }

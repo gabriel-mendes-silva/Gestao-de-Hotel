@@ -6,7 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.Modelo;
 import view.TelaBuscaModelo;
 
 /**
@@ -27,34 +32,92 @@ public class ControllerBuscaModelo implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getSource() == this.telaBuscaModelo.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
             if(this.telaBuscaModelo.getjTableDados().getRowCount() == 0){
                 JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+                ControllerCadModelo.codigo = (int) this.telaBuscaModelo.getjTableDados()
+                        .getValueAt(this.telaBuscaModelo.getjTableDados().getSelectedRow(), 0);
+
+                this.telaBuscaModelo.dispose();
             }
         }
         else if(evento.getSource() == this.telaBuscaModelo.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
-            if(this.telaBuscaModelo.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+            if (this.telaBuscaModelo.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Sem dados para a seleção");
+            } else {
+
+                if (this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    Modelo modelo = new Modelo();
+
+                    modelo = service.ModeloService.carregar(Integer.parseInt(this.telaBuscaModelo.getjTextFieldValor().getText()));
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaModelo.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(new Object[]{
+                            modelo.getId(),
+                            modelo.getDescricao(),
+                            modelo.getMarca().getDescricao(),
+                            modelo.getStatus()});
                 }
-                if(this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                if (this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<Modelo> modelosFiltrados = new ArrayList<>();
+                    modelosFiltrados = service.ModeloService.carregar("modelo.descricao", this.telaBuscaModelo.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaModelo.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Modelo modelo : modelosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        modelo.getId(),
+                                        modelo.getDescricao(),
+                                        modelo.getMarca().getDescricao(),
+                                        modelo.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                if (this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<Modelo> modelosFiltrados = new ArrayList<>();
+                    modelosFiltrados = service.ModeloService.carregar("marca.descricao", this.telaBuscaModelo.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaModelo.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Modelo modelo : modelosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        modelo.getId(),
+                                        modelo.getDescricao(),
+                                        modelo.getMarca().getDescricao(),
+                                        modelo.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
+                if (this.telaBuscaModelo.getjComboBoxBusca().getSelectedIndex() == 3) {
+                    List<Modelo> modelosFiltrados = new ArrayList<>();
+                    modelosFiltrados = service.ModeloService.carregar("modelo.status", this.telaBuscaModelo.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaModelo.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Modelo modelo : modelosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        modelo.getId(),
+                                        modelo.getDescricao(),
+                                        modelo.getMarca().getDescricao(),
+                                        modelo.getStatus()
+                                }
+                        );
+                    }
                 }
-                
+
             }
         }
         else if(evento.getSource() == this.telaBuscaModelo.getjButtonSair()){

@@ -23,6 +23,7 @@ import javax.swing.*;
 public class ControllerCadModelo implements ActionListener {
 
     TelaCadastroModelo telaCadastroModelo;
+    public static int codigo;
 
     public ControllerCadModelo(TelaCadastroModelo telaCadastroModelo) {
         this.telaCadastroModelo = telaCadastroModelo;
