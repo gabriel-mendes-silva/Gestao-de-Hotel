@@ -36,6 +36,16 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
             stmt.setString(1, veiculo.getPlaca());
             stmt.setString(2, veiculo.getCor());
             stmt.setInt(3, veiculo.getModelo().getId());
+            if(veiculo.getFuncionario() != null){
+                stmt.setInt(4, veiculo.getFuncionario().getId());
+             
+            }
+            else if(veiculo.getFornecedor() != null){
+                stmt.setInt(5, veiculo.getFornecedor().getId());
+            }
+            else if(veiculo.getHospede() != null){
+                stmt.setInt(6, veiculo.getFuncionario().getId());
+            }
             stmt.setInt(4, veiculo.getFuncionario().getId());
             stmt.setInt(5, veiculo.getFornecedor().getId());
             stmt.setInt(6, veiculo.getHospede().getId());

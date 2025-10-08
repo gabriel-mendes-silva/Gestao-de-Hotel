@@ -24,7 +24,7 @@ public class MarcaMySQL implements Persistencia<Marca> {
     @Override
     public void inserir(Marca marca) {
 
-        String sql = "INSERT INTO MARCA ("
+        String sql = "INSERT INTO marca ("
                 + " DESCRICAO,"
                 + "STATUS) VALUES (?,?)";
 
@@ -47,7 +47,7 @@ public class MarcaMySQL implements Persistencia<Marca> {
                 + " ID,"
                 + " DESCRICAO,"
                 + " STATUS"
-                + " FROM MARCA"
+                + " FROM marca"
                 + " WHERE ID = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
@@ -83,7 +83,7 @@ public class MarcaMySQL implements Persistencia<Marca> {
                 + " ID,"
                 + " DESCRICAO,"
                 + " STATUS"
-                + " FROM MARCA"
+                + " FROM marca"
                 + " WHERE " + atributo + " LIKE ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -110,7 +110,7 @@ public class MarcaMySQL implements Persistencia<Marca> {
     @Override
     public void atualizar(Marca marca) {
 
-        String sql = "UPDATE MARCA"
+        String sql = "UPDATE marca"
                 + " SET"
                 + " DESCRICAO = ?,"
                 + " STATUS = ?"

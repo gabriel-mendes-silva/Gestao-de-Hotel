@@ -32,14 +32,19 @@ public class Main {
     public static void main(String[] args) {
 
         // Instanciando a classe MarcaMySQL
+    
+        HospedeMySQL hospedeMySQL = new HospedeMySQL();
+        System.out.println(hospedeMySQL.buscar(11));
+        /*
+
         MarcaMySQL marcaDAO = new MarcaMySQL();
         ModeloMySQL modeloDAO = new ModeloMySQL();
         VeiculoMySQL veiculoDAO = new VeiculoMySQL();
         HospedeMySQL hospedeDAO = new HospedeMySQL();
         FuncionarioMySQL funcionarioDAO = new FuncionarioMySQL();
         FornecedorMySQL fornecedorDAO = new FornecedorMySQL();
-        
-        
+
+
         Veiculo veiculo = new Veiculo();
         veiculo.setCor("Vermelho");
         veiculo.setModelo(modeloDAO.buscar(2));
@@ -48,8 +53,7 @@ public class Main {
         veiculo.setHospede(hospedeDAO.buscar(14));
 
         veiculoDAO.inserir(veiculo);
-        
-        /*
+
         List<Modelo> modelos = new ArrayList<>();
         modelos = modeloDAO.buscar("descricao", "Sedan");
         System.out.println(modelos);

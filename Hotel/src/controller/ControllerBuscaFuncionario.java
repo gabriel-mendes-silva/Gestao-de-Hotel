@@ -6,7 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.Funcionario;
 import view.TelaBuscaFuncionario;
 
 /**
@@ -27,34 +32,92 @@ public class ControllerBuscaFuncionario implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getSource() == this.telaBuscaFuncionario.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
+
             if(this.telaBuscaFuncionario.getjTableDados().getRowCount() == 0){
                 JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+                ControllerCadFuncionario.codigo = (int) this.telaBuscaFuncionario.getjTableDados()
+                        .getValueAt(this.telaBuscaFuncionario.getjTableDados().getSelectedRow(), 0);
+
+                System.out.println(ControllerCadFuncionario.codigo);
+                this.telaBuscaFuncionario.dispose();
+
+
+
             }
         }
         else if(evento.getSource() == this.telaBuscaFuncionario.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
-            if(this.telaBuscaFuncionario.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+            if (this.telaBuscaFuncionario.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Sem dados para a seleção");
+            } else {
+
+                if (this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    Funcionario funcionario = new Funcionario();
+
+                    funcionario = service.FuncionarioService.carregar(Integer.parseInt(this.telaBuscaFuncionario.getjTextFieldValor().getText()));
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaFuncionario.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(new Object[]{funcionario.getId(), funcionario.getNome(), funcionario.getCpf(), funcionario.getStatus()});
                 }
-                if(this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                if (this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<Funcionario> funcionariosFiltrados = new ArrayList<>();
+                    funcionariosFiltrados = service.FuncionarioService.carregar("NOME", this.telaBuscaFuncionario.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaFuncionario.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Funcionario funcionario : funcionariosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        funcionario.getId(),
+                                        funcionario.getNome(),
+                                        funcionario.getCpf(),
+                                        funcionario.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                if (this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<Funcionario> funcionariosFiltrados = new ArrayList<>();
+                    funcionariosFiltrados = service.FuncionarioService.carregar("CPF", this.telaBuscaFuncionario.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaFuncionario.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Funcionario funcionario : funcionariosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        funcionario.getId(),
+                                        funcionario.getNome(),
+                                        funcionario.getCpf(),
+                                        funcionario.getStatus()
+                                }
+                        );
+                    }
                 }
-                if(this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
+                if (this.telaBuscaFuncionario.getjComboBoxBusca().getSelectedIndex() == 3) {
+                    List<Funcionario> funcionariosFiltrados = new ArrayList<>();
+                    funcionariosFiltrados = service.FuncionarioService.carregar("STATUS", this.telaBuscaFuncionario.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaFuncionario.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Funcionario funcionario : funcionariosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        funcionario.getId(),
+                                        funcionario.getNome(),
+                                        funcionario.getCpf(),
+                                        funcionario.getStatus()
+                                }
+                        );
+                    }
                 }
-                
+
             }
         }
         else if(evento.getSource() == this.telaBuscaFuncionario.getjButtonSair()){

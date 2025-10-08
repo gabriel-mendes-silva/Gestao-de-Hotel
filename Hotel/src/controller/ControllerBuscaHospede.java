@@ -32,16 +32,24 @@ public class ControllerBuscaHospede implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
 
+        //-------------------------------------------------------------------------------------------------------------------
+
+        //Verifica se o botão é carregar;
         if (evento.getSource() == this.telaBuscaHospede.getjButtonCarregar()) {
+
+            //Verifica se não tem dados na tabela;
             if (this.telaBuscaHospede.getjTableDados().getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Errrrrrouuuu. \nNão existem dados selecionados!");
-            } else {
+            }
+            //Se houver, joga o id para a tela de cadastro;
+            else {
                 ControllerCadHospede.codigo = (int) this.telaBuscaHospede.getjTableDados()
                         .getValueAt(this.telaBuscaHospede.getjTableDados().getSelectedRow(), 0);
                 
-                System.out.println(ControllerCadHospede.codigo);
                 this.telaBuscaHospede.dispose();
             }
+
+
         } else if (evento.getSource() == this.telaBuscaHospede.getjButtonBuscar()) {
 
             if (this.telaBuscaHospede.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {

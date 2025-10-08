@@ -9,56 +9,57 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 /**
  *
  * @author GABRIEL
  */
 public class ConnectionFactory {
+
     private static final String drive = "com.mysql.jdbc.Driver";
-    private static final String banco= "jdbc:mysql://localhost:3306/hotel";
-    private static final String usuario = System.getenv("MySQL_USER");
-    private static final String senha = System.getenv("MySQL_PASSWORD");
-    
+    private static final String banco = "jdbc:mysql://localhost:3306/hotel";
+    private static final String usuario = "root";
+    private static final String senha = "ifscGabriel236d";
+
     public static Connection getConnection() {
 
         try {
-            return DriverManager.getConnection(banco + "?verifyServerCertificate=false"
+            return DriverManager.getConnection(banco
+                    + "?verifyServerCertificate=false"
                     + "&useSSL=false"
+                    + "&allowPublicKeyRetrieval=true"
                     + "&requireSSL=false"
-                    + "&USER=" + usuario + "&password=" + senha + "&serverTimezone=UTC");
+                    + "&user=" + usuario + "&password=" + senha + "&serverTimezone=UTC");
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
     }
-    
-    public static void closeConnection(Connection connection){
-        try{
+
+    public static void closeConnection(Connection connection) {
+        try {
             connection.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-  
+
     }
-    
-    public static void closeConnection(Connection connection, PreparedStatement pstm){
-        try{
+
+    public static void closeConnection(Connection connection, PreparedStatement pstm) {
+        try {
             pstm.close();
             connection.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-      public static void closeConnection(Connection connection, PreparedStatement pstm, ResultSet rs){
-        try{
+
+    public static void closeConnection(Connection connection, PreparedStatement pstm, ResultSet rs) {
+        try {
             pstm.close();
             rs.close();
             connection.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

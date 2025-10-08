@@ -12,15 +12,17 @@ package model.bo;
 public class Servico {
    private int id;
    private String descricao;
+   private String obs;
    private char status;
 
     public Servico() {
     }
 
-    public Servico(int id, String descricao, char status) {
+    public Servico(int id, String descricao, String obs, char status) {
         this.id = id;
         this.descricao = descricao;
         this.status = status;
+        this.obs = obs;
     }
 
     public int getId() {
@@ -45,6 +47,14 @@ public class Servico {
 
     public void setStatus(char status) {
         this.status = status;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 
     @Override

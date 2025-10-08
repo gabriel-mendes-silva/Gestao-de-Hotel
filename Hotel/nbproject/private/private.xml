@@ -3,19 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/Main.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Marca.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/CopaQuarto.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Caixa.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/CopaQuartoMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Reserva.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/VeiculoMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/HospedeMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/ModeloMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Hospede.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/DAO/MarcaMySQL.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Veiculo.java</file>
-            <file>file:/C:/Users/manutencao/Documents/GitHub/Gestao-de-Hotel/Hotel/src/model/bo/Pessoa.java</file>
+            <file>file:/home/gabriel/Documents/GitHub/Gestao-de-Hotel/Hotel/src/view/TelaCadastroModelo.java</file>
         </group>
     </open-files>
 </project-private>

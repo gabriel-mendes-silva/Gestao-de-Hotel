@@ -101,7 +101,7 @@ public class TelaBuscaFuncionario extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome Fantasia", "CPF/CNPJ", "Status" }));
+        jComboBoxBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "CPF", "Status" }));
         jComboBoxBusca.setSelectedIndex(-1);
 
         jLabelFiltro.setText("Filtrar por");

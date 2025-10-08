@@ -22,7 +22,7 @@ public class ModeloMySQL implements Persistencia<Modelo> {
     @Override
     public void inserir(Modelo modelo) {
 
-        String sql = "INSERT INTO MODELO ("
+        String sql = "INSERT INTO modelo ("
                 + " DESCRICAO,"
                 + " STATUS,"
                 + " MARCA_ID) VALUES (?,?,?)";
@@ -48,7 +48,7 @@ public class ModeloMySQL implements Persistencia<Modelo> {
                 + " DESCRICAO,"
                 + " STATUS,"
                 + " MARCA_ID"
-                + " FROM MODELO"
+                + " FROM modelo"
                 + " WHERE ID = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
@@ -86,7 +86,7 @@ public class ModeloMySQL implements Persistencia<Modelo> {
                 + " DESCRICAO,"
                 + " STATUS,"
                 + " MARCA_ID"
-                + " FROM MODELO"
+                + " FROM modelo"
                 + " WHERE " + atributo + " LIKE ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -114,7 +114,7 @@ public class ModeloMySQL implements Persistencia<Modelo> {
     @Override
     public void atualizar(Modelo modelo) {
 
-        String sql = "UPDATE MODELO"
+        String sql = "UPDATE modelo"
                 + " SET"
                 + " DESCRICAO = ?,"
                 + " STATUS = ?,"

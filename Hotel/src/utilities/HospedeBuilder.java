@@ -9,6 +9,9 @@ import model.bo.Sexo;
 import model.bo.SexoNullable;
 import model.bo.SexoNulo;
 
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+
 /**
  *
  * @author GABRIEL

@@ -6,7 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.Marca;
 import view.TelaBuscaMarca;
 
 /**
@@ -27,34 +32,67 @@ public class ControllerBuscaMarca implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getSource() == this.telaBuscaMarca.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
             if(this.telaBuscaMarca.getjTableDados().getRowCount() == 0){
                 JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+                ControllerCadMarca.codigo = (int) this.telaBuscaMarca.getjTableDados()
+                        .getValueAt(this.telaBuscaMarca.getjTableDados().getSelectedRow(), 0);
+
+                this.telaBuscaMarca.dispose();
             }
         }
         else if(evento.getSource() == this.telaBuscaMarca.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
-            if(this.telaBuscaMarca.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+            if (this.telaBuscaMarca.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Sem dados para a seleção");
+            } else {
+
+                if (this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    Marca marca = new Marca();
+
+                    marca = service.MarcaService.carregar(Integer.parseInt(this.telaBuscaMarca.getjTextFieldValor().getText()));
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaMarca.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(new Object[]{marca.getId(), marca.getDescricao(), marca.getStatus()});
                 }
-                if(this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                if (this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<Marca> marcasFiltrados = new ArrayList<>();
+                    marcasFiltrados = service.MarcaService.carregar("descricao", this.telaBuscaMarca.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaMarca.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Marca marca : marcasFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        marca.getId(),
+                                        marca.getDescricao(),
+                                        marca.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                if (this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<Marca> marcasFiltrados = new ArrayList<>();
+                    marcasFiltrados = service.MarcaService.carregar("status", this.telaBuscaMarca.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaMarca.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Marca marca : marcasFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        marca.getId(),
+                                        marca.getDescricao(),
+                                        marca.getStatus()
+                                }
+                        );
+                    }
                 }
-                if(this.telaBuscaMarca.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
-                }
-                
+
             }
         }
         else if(evento.getSource() == this.telaBuscaMarca.getjButtonSair()){

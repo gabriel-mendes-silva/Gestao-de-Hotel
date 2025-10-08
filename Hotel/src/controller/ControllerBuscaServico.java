@@ -6,7 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.Servico;
 import view.TelaBuscaServico;
 
 /**
@@ -15,6 +20,7 @@ import view.TelaBuscaServico;
  */
 public class ControllerBuscaServico implements ActionListener{
     private TelaBuscaServico telaBuscaServico;
+
 
     public ControllerBuscaServico(TelaBuscaServico telaBuscaServico) {
         this.telaBuscaServico = telaBuscaServico;
@@ -26,35 +32,74 @@ public class ControllerBuscaServico implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getSource() == this.telaBuscaServico.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
-            if(this.telaBuscaServico.getjTableDados().getRowCount() == 0){
-                JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
+        if (evento.getSource() == this.telaBuscaServico.getjButtonCarregar()) {
+
+            //Verifica se não tem dados na tabela;
+            if (this.telaBuscaServico.getjTableDados().getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Errrrrrouuuu. \nNão existem dados selecionados!");
             }
-            else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+            //Se houver, joga o id para a tela de cadastro;
+            else {
+                ControllerCadServico.codigo = (int) this.telaBuscaServico.getjTableDados()
+                        .getValueAt(this.telaBuscaServico.getjTableDados().getSelectedRow(), 0);
+
+                System.out.println(ControllerCadServico.codigo);
+                this.telaBuscaServico.dispose();
             }
+
+
         }
         else if(evento.getSource() == this.telaBuscaServico.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
-            if(this.telaBuscaServico.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+            if (this.telaBuscaServico.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Sem dados para a seleção");
+            } else {
+
+                if (this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    Servico servico = new Servico();
+
+                    servico = service.ServicoService.carregar(Integer.parseInt(this.telaBuscaServico.getjTextFieldValor().getText()));
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaServico.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(new Object[]{servico.getId(), servico.getDescricao(), servico.getStatus()});
                 }
-                if(this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                if (this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<Servico> servicosFiltrados = new ArrayList<>();
+                    servicosFiltrados = service.ServicoService.carregar("descricao", this.telaBuscaServico.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaServico.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Servico servico : servicosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        servico.getId(),
+                                        servico.getDescricao(),
+                                        servico.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                if (this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<Servico> servicosFiltrados = new ArrayList<>();
+                    servicosFiltrados = service.ServicoService.carregar("status", this.telaBuscaServico.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaServico.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (Servico servico : servicosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        servico.getId(),
+                                        servico.getDescricao(),
+                                        servico.getStatus()
+                                }
+                        );
+                    }
                 }
-                if(this.telaBuscaServico.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
-                }
-                
+
             }
         }
         else if(evento.getSource() == this.telaBuscaServico.getjButtonSair()){

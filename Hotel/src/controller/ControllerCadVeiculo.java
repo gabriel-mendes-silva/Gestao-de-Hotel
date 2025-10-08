@@ -24,25 +24,25 @@ public class ControllerCadVeiculo implements ActionListener {
         this.telaCadastroVeiculo.getjButtonCancelar().addActionListener(this);
         this.telaCadastroVeiculo.getjButtonBuscar().addActionListener(this);
 
-        utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanel1(), true);
-        utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanel2(), false);
+        utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanelBotoes(), true);
+        utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanelDados(), false);
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         if (evento.getSource() == this.telaCadastroVeiculo.getjButtonNovo()) {
-            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanel1(), false);
-            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanel2(), true);
+            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanelBotoes(), false);
+            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanelDados(), true);
 
         }
         if (evento.getSource() == this.telaCadastroVeiculo.getjButtonCancelar()) {
-            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanel1(), true);
-            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanel2(), false);
+            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanelBotoes(), true);
+            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanelDados(), false);
 
         }
         if (evento.getSource() == this.telaCadastroVeiculo.getjButtonGravar()) {
-            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanel1(), true);
-            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanel2(), false);
+            utilities.Utilities.ativaDesativa(this.telaCadastroVeiculo.getjPanelBotoes(), true);
+            utilities.Utilities.limpaComponentes(this.telaCadastroVeiculo.getjPanelDados(), false);
         }
         if (evento.getSource() == this.telaCadastroVeiculo.getjButtonBuscar()) {
             TelaBuscaVeiculo busca = new TelaBuscaVeiculo(null,true);

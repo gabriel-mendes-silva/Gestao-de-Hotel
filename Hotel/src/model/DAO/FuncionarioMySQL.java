@@ -23,7 +23,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
 @Override
     public void inserir(Funcionario funcionario) {
 
-        String sql = "INSERT INTO FUNCIONARIO ("
+        String sql = "INSERT INTO funcionario ("
                 + "NOME, "
                 + "FONE, "
                 + "FONE2, "
@@ -88,7 +88,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -96,7 +96,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
                 + " USUARIO,"
                 + " SENHA, "
                 + " SEXO"
-                + " FROM FUNCIONARIO"
+                + " FROM funcionario"
                 + " WHERE ID = ?";
       
         
@@ -163,7 +163,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -171,7 +171,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
                 + " USUARIO,"
                 + " SENHA,"
                 + " SEXO"
-                + " FROM FUNCIONARIO"
+                + " FROM funcionario"
                 + " WHERE " + atributo + " LIKE ?";
         
         try(Connection connection = ConnectionFactory.getConnection();
@@ -220,7 +220,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
     @Override
     public void atualizar(Funcionario funcionario) {
         
-        String sql = "UPDATE FUNCIONARIO"
+        String sql = "UPDATE funcionario"
                 + " SET"
                 + " NOME = ?,"
                 + " FONE = ?,"
@@ -231,7 +231,7 @@ public class FuncionarioMySQL implements Persistencia <Funcionario>{
                 + " BAIRRO = ?,"
                 + " CIDADE = ?,"
                 + " COMPLEMENTO = ?,"
-                + " DATA_CADASTRO = ?,"
+                + " DATA_CADASTRO = STR_TO_DATE(?,'%d/%m/%Y'),"
                 + " CPF = ?,"
                 + " RG = ?,"
                 + " OBS = ?,"

@@ -36,9 +36,18 @@ public class Utilities {
             }
         }
     }
+
+    public static void ativaDesativa(Component [] vetComponentes, boolean ativa){
+
+        for(Component componenteAtual : vetComponentes){
+            componenteAtual.setEnabled(ativa);
+        }
+    }
+
+
     
     public static void limpaComponentes(JPanel painel, boolean ativa){
-         Component [] vetComponentes = painel.getComponents();
+        Component [] vetComponentes = painel.getComponents();
          
         for(Component componenteAtual : vetComponentes){
             if(componenteAtual instanceof JTextField){
@@ -47,11 +56,11 @@ public class Utilities {
             }
             else if(componenteAtual instanceof JFormattedTextField){
                 ((JFormattedTextField) componenteAtual).setText("");
-                 componenteAtual.setEnabled(ativa);
+                componenteAtual.setEnabled(ativa);
             }
             else if(componenteAtual instanceof JComboBox){
                 ((JComboBox) componenteAtual).setSelectedIndex(-1);
-                 componenteAtual.setEnabled(ativa);
+                componenteAtual.setEnabled(ativa);
             }
             else if (componenteAtual instanceof JScrollPane) {
                 JScrollPane scroll = (JScrollPane) componenteAtual;
@@ -66,15 +75,51 @@ public class Utilities {
                 ((JRadioButton)componenteAtual).setSelected(false);
                 componenteAtual.setEnabled(ativa);
             }
+            else if(componenteAtual instanceof JRadioButton){
+                ((JRadioButton)componenteAtual).setSelected(false);
+                componenteAtual.setEnabled(ativa);
+            }
             else if(componenteAtual instanceof JCheckBox){
                 ((JCheckBox)componenteAtual).setSelected(false);
                 componenteAtual.setEnabled(ativa);
             }
             else if(componenteAtual instanceof JPasswordField){
                 ((JPasswordField) componenteAtual).setText("");
-                 componenteAtual.setEnabled(ativa);
+                componenteAtual.setEnabled(ativa);
             }
         }
     }
+    public static void limpaComponentes(Component [] vetComponentes, boolean ativa) {
 
+        for (Component componenteAtual : vetComponentes) {
+            if (componenteAtual instanceof JTextField) {
+                ((JTextField) componenteAtual).setText("");
+                componenteAtual.setEnabled(ativa);
+            } else if (componenteAtual instanceof JFormattedTextField) {
+                ((JFormattedTextField) componenteAtual).setText("");
+                componenteAtual.setEnabled(ativa);
+            } else if (componenteAtual instanceof JComboBox) {
+                ((JComboBox) componenteAtual).setSelectedIndex(-1);
+                componenteAtual.setEnabled(ativa);
+            } else if (componenteAtual instanceof JScrollPane) {
+                JScrollPane scroll = (JScrollPane) componenteAtual;
+                Component view = scroll.getViewport().getView(); // Aqui está a JTextArea!
+
+                if (view instanceof JTextArea) {
+                    ((JTextArea) view).setText("");
+                    ((JTextArea) view).setEnabled(ativa);
+                }
+            } else if (componenteAtual instanceof JRadioButton) {
+                ((JRadioButton) componenteAtual).setSelected(false);
+                componenteAtual.setEnabled(ativa);
+            } else if (componenteAtual instanceof JCheckBox) {
+                ((JCheckBox) componenteAtual).setSelected(false);
+                componenteAtual.setEnabled(ativa);
+            } else if (componenteAtual instanceof JPasswordField) {
+                ((JPasswordField) componenteAtual).setText("");
+                componenteAtual.setEnabled(ativa);
+            }
+        }
+
+    }
 }

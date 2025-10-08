@@ -11,10 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.bo.SexoEmpty;
-import model.bo.SexoNullable;
 import model.bo.SexoValido;
 import utilities.HospedeBuilder;
 
@@ -27,26 +24,26 @@ public class HospedeMySQL implements Persistencia<Hospede> {
     @Override
     public void inserir(Hospede hospede) {
 
-        String sql = "INSERT INTO HOSPEDE ("
-                + "NOME, "
-                + "FONE, "
-                + "FONE2, "
-                + "EMAIL, "
-                + "CEP, "
-                + "LOGRADOURO, "
-                + "BAIRRO, "
-                + "CIDADE, "
-                + "COMPLEMENTO, "
-                + "DATA_CADASTRO,"
-                + "CPF, "
-                + "RG, "
-                + "OBS, "
-                + "STATUS, "
-                + "RAZAO_SOCIAL, "
-                + "CNPJ, "
-                + "INSCRICAO_ESTADUAL, "
-                + "CONTATO, "
-                + "SEXO) VALUES (?,?,?,?,?,?,?,?,?,STR_TO_DATE(?,'%d/%m/%Y')"
+        String sql = "insert into hospede ("
+                + "nome, "
+                + "fone, "
+                + "fone2, "
+                + "email, "
+                + "cep, "
+                + "logradouro, "
+                + "bairro, "
+                + "cidade, "
+                + "complemento, "
+                + "data_cadastro,"
+                + "cpf, "
+                + "rg, "
+                + "obs, "
+                + "status, "
+                + "razao_social, "
+                + "cnpj, "
+                + "inscricao_estadual, "
+                + "contato, "
+                + "sexo) values (?,?,?,?,?,?,?,?,?,str_to_date(?,'%d/%m/%Y')"
                 + ",?,?,?,?,?,?,?,?,?)";
 
         try (Connection conexao = ConnectionFactory.getConnection(); PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -92,7 +89,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -102,7 +99,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " INSCRICAO_ESTADUAL,"
                 + " CONTATO,"
                 + " SEXO"
-                + " FROM HOSPEDE"
+                + " FROM hospede"
                 + " WHERE ID = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
@@ -167,7 +164,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -177,7 +174,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " INSCRICAO_ESTADUAL,"
                 + " CONTATO,"
                 + " SEXO"
-                + " FROM HOSPEDE"
+                + " FROM hospede"
                 + " WHERE " + atributo + " LIKE ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -226,7 +223,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
     @Override
     public void atualizar(Hospede hospede) {
 
-        String sql = "UPDATE HOSPEDE"
+        String sql = "UPDATE hospede"
                 + " SET"
                 + " NOME = ?,"
                 + " FONE = ?,"
@@ -237,7 +234,7 @@ public class HospedeMySQL implements Persistencia<Hospede> {
                 + " BAIRRO = ?,"
                 + " CIDADE = ?,"
                 + " COMPLEMENTO = ?,"
-                + " DATA_CADASTRO = ?,"
+                + " DATA_CADASTRO = STR_TO_DATE(?,'%d/%m/%Y'),"
                 + " CPF = ?,"
                 + " RG = ?,"
                 + " OBS = ?,"

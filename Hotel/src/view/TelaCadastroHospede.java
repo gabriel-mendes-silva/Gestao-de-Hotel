@@ -423,6 +423,7 @@ public class TelaCadastroHospede extends javax.swing.JDialog {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jTextFieldInscricaoEstadual = new javax.swing.JTextField();
         jPanelTitulo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
@@ -464,7 +465,6 @@ public class TelaCadastroHospede extends javax.swing.JDialog {
         jLabelCNPJ = new javax.swing.JLabel();
         jTextFieldCNPJ = new javax.swing.JTextField();
         jLabelInscricaoEstadual = new javax.swing.JLabel();
-        jTextFieldInscricaoEstadual = new javax.swing.JTextField();
         jLabelContato = new javax.swing.JLabel();
         jTextFieldContato = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -679,7 +679,6 @@ public class TelaCadastroHospede extends javax.swing.JDialog {
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldCNPJ)
-                            .addComponent(jTextFieldInscricaoEstadual)
                             .addComponent(jTextFieldContato)
                             .addComponent(jLabelCNPJ)
                             .addComponent(jLabelInscricaoEstadual)
@@ -766,9 +765,7 @@ public class TelaCadastroHospede extends javax.swing.JDialog {
                                         .addComponent(jTextFieldCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabelInscricaoEstadual)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(35, 35, 35)
                                         .addComponent(jLabelContato)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jTextFieldContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

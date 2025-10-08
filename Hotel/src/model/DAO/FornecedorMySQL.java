@@ -22,7 +22,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
      @Override
     public void inserir(Fornecedor fornecedor) {
 
-        String sql = "INSERT INTO FORNECEDOR ("
+        String sql = "INSERT INTO fornecedor ("
                 + "NOME, "
                 + "FONE, "
                 + "FONE2, "
@@ -85,7 +85,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -94,7 +94,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
                 + " CNPJ,"
                 + " INSCRICAO_ESTADUAL,"
                 + " CONTATO"
-                + " FROM FORNECEDOR"
+                + " FROM fornecedor"
                 + " WHERE ID = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
@@ -153,7 +153,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
                 + " BAIRRO,"
                 + " CIDADE,"
                 + " COMPLEMENTO,"
-                + " DATA_CADASTRO,"
+                + " DATE_FORMAT(DATA_CADASTRO, '%d/%m/%Y') AS DATA_CADASTRO,"
                 + " CPF,"
                 + " RG,"
                 + " OBS,"
@@ -162,7 +162,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
                 + " CNPJ,"
                 + " INSCRICAO_ESTADUAL,"
                 + " CONTATO"
-                + " FROM FORNECEDOR"
+                + " FROM fornecedor"
                 + " WHERE " + atributo + " LIKE ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -205,7 +205,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
     @Override
     public void atualizar(Fornecedor fornecedor) {
 
-        String sql = "UPDATE FORNECEDOR"
+        String sql = "UPDATE fornecedor"
                 + " SET"
                 + " NOME = ?,"
                 + " FONE = ?,"
@@ -216,7 +216,7 @@ public class FornecedorMySQL implements Persistencia <Fornecedor>{
                 + " BAIRRO = ?,"
                 + " CIDADE = ?,"
                 + " COMPLEMENTO = ?,"
-                + " DATA_CADASTRO = ?,"
+                + " DATA_CADASTRO = STR_TO_DATE(?,'%d/%m/%Y'),"
                 + " CPF = ?,"
                 + " RG = ?,"
                 + " OBS = ?,"

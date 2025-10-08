@@ -6,7 +6,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.Servico;
+import model.bo.VagaEstacionamento;
 import view.TelaBuscaVaga;
 
 /**
@@ -26,34 +32,96 @@ public class ControllerBuscaVaga implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(evento.getSource() == this.telaBuscaVaga.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
-            if(this.telaBuscaVaga.getjTableDados().getRowCount() == 0){
-                JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
+        if (evento.getSource() == this.telaBuscaVaga.getjButtonCarregar()) {
+
+            //Verifica se não tem dados na tabela;
+            if (this.telaBuscaVaga.getjTableDados().getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Errrrrrouuuu. \nNão existem dados selecionados!");
             }
-            else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+            //Se houver, joga o id para a tela de cadastro;
+            else {
+                ControllerCadVaga.codigo = (int) this.telaBuscaVaga.getjTableDados()
+                        .getValueAt(this.telaBuscaVaga.getjTableDados().getSelectedRow(), 0);
+
+                System.out.println(ControllerCadVaga.codigo);
+                this.telaBuscaVaga.dispose();
             }
+
+
         }
         else if(evento.getSource() == this.telaBuscaVaga.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
             if(this.telaBuscaVaga.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 0){
-                    
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+                if (this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    VagaEstacionamento vaga = new VagaEstacionamento();
+
+                    vaga = service.VagaEstacionamentoService.carregar(Integer.parseInt(this.telaBuscaVaga.getjTextFieldValor().getText()));
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaVaga.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(new Object[]{
+                            vaga.getId(),
+                            vaga.getDescricao(),
+                            vaga.getMetragemVaga(),
+                            vaga.getStatus()});
                 }
-                if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Descrição");
+                if (this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<VagaEstacionamento> vagasFiltradas = new ArrayList<>();
+                    vagasFiltradas = service.VagaEstacionamentoService.carregar("descricao", this.telaBuscaVaga.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaVaga.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (VagaEstacionamento vaga : vagasFiltradas) {
+                        tabela.addRow(
+                                new Object[]{
+                                        vaga.getId(),
+                                        vaga.getDescricao(),
+                                        vaga.getMetragemVaga(),
+                                        vaga.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Metragem");
+                if (this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<VagaEstacionamento> vagasFiltradas = new ArrayList<>();
+                    vagasFiltradas = service.VagaEstacionamentoService.carregar("metragem_vaga", this.telaBuscaVaga.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaVaga.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (VagaEstacionamento vaga : vagasFiltradas) {
+                        tabela.addRow(
+                                new Object[]{
+                                        vaga.getId(),
+                                        vaga.getDescricao(),
+                                        vaga.getMetragemVaga(),
+                                        vaga.getStatus()
+                                }
+                        );
+                    }
                 }
                 if(this.telaBuscaVaga.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
+                    List<VagaEstacionamento> vagasFiltradas = new ArrayList<>();
+                    vagasFiltradas = service.VagaEstacionamentoService.carregar("status", this.telaBuscaVaga.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaVaga.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (VagaEstacionamento vaga : vagasFiltradas) {
+                        tabela.addRow(
+                                new Object[]{
+                                        vaga.getId(),
+                                        vaga.getDescricao(),
+                                        vaga.getMetragemVaga(),
+                                        vaga.getStatus()
+                                }
+                        );
+                    }
                 }
                 
             }
