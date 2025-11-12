@@ -5,20 +5,16 @@
  */
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import model.bo.Marca;
 import model.bo.Modelo;
 import service.MarcaService;
-import view.TelaBuscaHospede;
 import view.TelaBuscaModelo;
 import view.TelaCadastroModelo;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ControllerCadModelo implements ActionListener {
 
@@ -120,11 +116,43 @@ public class ControllerCadModelo implements ActionListener {
         //--------------------------------- BUSCAR -------------------------------------------------------------
 
         if (evento.getSource() == this.telaCadastroModelo.getjButtonBuscar()) {
-            TelaBuscaModelo busca = new TelaBuscaModelo(null,true);
+
+            codigo = 0;
+
+            TelaBuscaModelo busca = new TelaBuscaModelo(null, true);
             ControllerBuscaModelo contr = new ControllerBuscaModelo(busca);
             busca.setVisible(true);
+            if (codigo != 0) {
+                utilities.Utilities.ativaDesativa(this.telaCadastroModelo.getjPanelBotoes(), false);
+                utilities.Utilities.limpaComponentes(this.telaCadastroModelo.getjPanelDados(), true);
+
+                this.telaCadastroModelo.getjTextFieldID().setText(String.valueOf(codigo));
+                this.telaCadastroModelo.getjTextFieldID().setEnabled(false);
+                this.telaCadastroModelo.getjTextFieldStatus().setEnabled(false);
+
+                Modelo modelo = service.ModeloService.carregar(codigo);
+
+
+                this.telaCadastroModelo.getjTextFieldStatus().setText(String.valueOf(modelo.getStatus()));
+                this.telaCadastroModelo.getjTextFieldDescricao().setText(modelo.getDescricao());
+
+                ArrayList<Marca> opcoesMarca = (ArrayList<Marca>) service.MarcaService.carregar("descricao", "%%");
+                for (Marca marca : opcoesMarca) {
+                    this.telaCadastroModelo.getjComboBoxMarca().addItem(marca.getDescricao());
+                }
+
+                for (int i = 0; i < this.telaCadastroModelo.getjComboBoxMarca().getItemCount(); i++) {
+                    if (modelo.getMarca().getDescricao().equalsIgnoreCase(String.valueOf(this.telaCadastroModelo.getjComboBoxMarca().getItemAt(i)))) {
+                        this.telaCadastroModelo.getjComboBoxMarca().setSelectedIndex(i);
+                    }
+                }
+            }
+
+
+
 
         }
+
         if (evento.getSource() == this.telaCadastroModelo.getjButtonSair()) {
             this.telaCadastroModelo.dispose();
         }

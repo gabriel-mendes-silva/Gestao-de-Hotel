@@ -1,21 +1,12 @@
 
 import controller.ControllerCadModelo;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import model.DAO.FornecedorMySQL;
-import model.DAO.FuncionarioMySQL;
-import model.DAO.HospedeMySQL;
-import model.DAO.MarcaMySQL;
-import model.DAO.ModeloMySQL;
-import model.DAO.VeiculoMySQL;
-import model.bo.Fornecedor;
-import model.bo.Funcionario;
-import model.bo.Hospede;
-import model.bo.Marca;
-import model.bo.Modelo;
-import model.bo.SexoNullable;
-import model.bo.SexoValido;
-import model.bo.Veiculo;
+
+import model.DAO.*;
+import model.bo.*;
 import utilities.HospedeBuilder;
 import view.TelaCadastroHospede;
 
@@ -31,40 +22,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Instanciando a classe MarcaMySQL
-    
-        HospedeMySQL hospedeMySQL = new HospedeMySQL();
-        System.out.println(hospedeMySQL.buscar(11));
-        /*
+        Data data = new DataPadrao("32/11/2025");
 
-        MarcaMySQL marcaDAO = new MarcaMySQL();
-        ModeloMySQL modeloDAO = new ModeloMySQL();
-        VeiculoMySQL veiculoDAO = new VeiculoMySQL();
-        HospedeMySQL hospedeDAO = new HospedeMySQL();
-        FuncionarioMySQL funcionarioDAO = new FuncionarioMySQL();
-        FornecedorMySQL fornecedorDAO = new FornecedorMySQL();
+        Data dataNF = new DataNaoFutura(data);
 
+        Data dataNP = new DataNaoPassada(dataNF);
 
-        Veiculo veiculo = new Veiculo();
-        veiculo.setCor("Vermelho");
-        veiculo.setModelo(modeloDAO.buscar(2));
-        veiculo.setPlaca("1234567");
-        veiculo.setStatus('A');
-        veiculo.setHospede(hospedeDAO.buscar(14));
+        System.out.println(dataNP.emString());
 
-        veiculoDAO.inserir(veiculo);
-
-        List<Modelo> modelos = new ArrayList<>();
-        modelos = modeloDAO.buscar("descricao", "Sedan");
-        System.out.println(modelos);
-        
-        Modelo modelo2 = modeloDAO.buscar(2);
-        modelo2.setDescricao("SUV");
-        modeloDAO.atualizar(modelo2);
-*/
-        
-        
-        
 
     }
 }

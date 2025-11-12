@@ -45,6 +45,8 @@ public class ControllerBuscaHospede implements ActionListener {
             else {
                 ControllerCadHospede.codigo = (int) this.telaBuscaHospede.getjTableDados()
                         .getValueAt(this.telaBuscaHospede.getjTableDados().getSelectedRow(), 0);
+                ControllerCadVeiculo.codigo = (int) this.telaBuscaHospede.getjTableDados()
+                        .getValueAt(this.telaBuscaHospede.getjTableDados().getSelectedRow(), 0);
                 
                 this.telaBuscaHospede.dispose();
             }

@@ -39,6 +39,8 @@ public class ControllerBuscaFuncionario implements ActionListener{
             else{
                 ControllerCadFuncionario.codigo = (int) this.telaBuscaFuncionario.getjTableDados()
                         .getValueAt(this.telaBuscaFuncionario.getjTableDados().getSelectedRow(), 0);
+                ControllerCadVeiculo.codigo = (int) this.telaBuscaFuncionario.getjTableDados()
+                        .getValueAt(this.telaBuscaFuncionario.getjTableDados().getSelectedRow(), 0);
 
                 System.out.println(ControllerCadFuncionario.codigo);
                 this.telaBuscaFuncionario.dispose();

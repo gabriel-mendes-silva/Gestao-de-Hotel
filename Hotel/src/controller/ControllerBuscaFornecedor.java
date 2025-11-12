@@ -38,6 +38,8 @@ public class ControllerBuscaFornecedor implements ActionListener{
             else{
                 ControllerCadFornecedor.codigo = (int) this.telaBuscaFornecedor.getjTableDados()
                         .getValueAt(this.telaBuscaFornecedor.getjTableDados().getSelectedRow(), 0);
+                ControllerCadVeiculo.codigo = (int) this.telaBuscaFornecedor.getjTableDados()
+                        .getValueAt(this.telaBuscaFornecedor.getjTableDados().getSelectedRow(), 0);
 
                 System.out.println(ControllerCadFornecedor.codigo);
                 this.telaBuscaFornecedor.dispose();

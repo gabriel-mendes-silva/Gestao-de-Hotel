@@ -109,7 +109,8 @@ public class Veiculo {
         return "Id = " + this.getId()
                 + "\nModelo = " + this.getModelo()
                 + "\nCor = " + this.getCor()
-                + "\nPlaca = " + this.getPlaca();
+                + "\nPlaca = " + this.getPlaca()
+                + "Dono Fornecedor:" + this.getFornecedor().getNome() + this.getFornecedor().getCnpj();
 
     }
 

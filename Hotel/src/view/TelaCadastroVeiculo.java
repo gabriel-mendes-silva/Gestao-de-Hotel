@@ -25,6 +25,17 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
         initComponents();
     }
 
+    public JButton getjButtonBuscaDono() {
+        return jButtonBuscaDono;
+    }
+    
+    
+
+    public JTextField getjTextFieldCpfCnpj() {
+        return jTextFieldCpfCnpj;
+    }
+    
+
     public JButton getjButtonBuscar() {
         return jButtonBuscar;
     }
@@ -45,8 +56,8 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
         return jButtonSair;
     }
 
-    public JComboBox<String> getjComboBox1() {
-        return jComboBox1;
+    public JComboBox<String> getjComboBoxCor() {
+        return jComboBoxCor;
     }
 
     public JComboBox<String> getjComboBoxMarca() {
@@ -97,7 +108,7 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
         return jPanel3;
     }
 
-    public JTextField getjTextFieldId() {
+    public JTextField getjTextFieldID() {
         return jTextFieldId;
     }
 
@@ -108,6 +119,12 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
     public JTextField getjTextFieldStatus() {
         return jTextFieldStatus;
     }
+
+    public JComboBox<String> getjComboBoxDono() {
+        return jComboBoxDono;
+    }
+
+    
     
     
 
@@ -120,6 +137,7 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
@@ -140,7 +158,14 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
         jLabelModelo = new javax.swing.JLabel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelCor = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxCor = new javax.swing.JComboBox<>();
+        jTextFieldCpfCnpj = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonBuscaDono = new javax.swing.JButton();
+        jComboBoxDono = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+
+        jToolBar1.setRollover(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -249,11 +274,7 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
 
         jLabel2.setText("Placa");
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabelMarca.setText("Marca");
-
-        jComboBoxModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabelModelo.setText("Modelo");
 
@@ -261,8 +282,29 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
 
         jLabelCor.setText("Cor");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vermelho", "Laranja", "Amarelo", "Verde", "Azul", "Roxo", "Rosa", "Marrom", "Prata", "Cinza", "Preto" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBoxCor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vermelho", "Laranja", "Amarelo", "Verde", "Azul", "Roxo", "Rosa", "Marrom", "Prata", "Cinza", "Preto" }));
+        jComboBoxCor.setSelectedIndex(-1);
+
+        jTextFieldCpfCnpj.setToolTipText("");
+        jTextFieldCpfCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCpfCnpjActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Dono (CPF/CNPJ)");
+
+        jButtonBuscaDono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Find.png"))); // NOI18N
+        jButtonBuscaDono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaDonoActionPerformed(evt);
+            }
+        });
+
+        jComboBoxDono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hospede", "Fornecedor", "Funcionário" }));
+        jComboBoxDono.setSelectedIndex(-1);
+
+        jLabel4.setText("Categoria do dono");
 
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
@@ -272,50 +314,64 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
                 .addGap(31, 31, 31)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addComponent(jComboBoxModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(164, 164, 164))
+                        .addComponent(jComboBoxModelo, 0, 193, Short.MAX_VALUE)
+                        .addGap(378, 378, 378))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelMarca)
                             .addComponent(jLabelModelo)
-                            .addComponent(jLabelId))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, 193, Short.MAX_VALUE)
-                            .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(164, 164, 164))
-                    .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox1, 0, 178, Short.MAX_VALUE)
-                        .addComponent(jLabelStatus, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldStatus, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabelCor))
-                .addGap(36, 36, 36))
+                            .addComponent(jLabelId)
+                            .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, 193, Short.MAX_VALUE)
+                                .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel2)
+                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(128, 128, 128)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxCor, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCor)
+                            .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelStatus)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboBoxDono, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonBuscaDono, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelDadosLayout.setVerticalGroup(
             jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabelId)
+                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelId)
+                    .addComponent(jLabel4))
                 .addGap(12, 12, 12)
-                .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxDono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonBuscaDono))
                 .addGap(14, 14, 14)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelMarca)
                     .addComponent(jLabelCor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(jLabelMarca)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelModelo)
@@ -370,6 +426,14 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSairActionPerformed
 
+    private void jTextFieldCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCpfCnpjActionPerformed
+
+    private void jButtonBuscaDonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaDonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBuscaDonoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -414,16 +478,20 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscaDono;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxCor;
+    private javax.swing.JComboBox<String> jComboBoxDono;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JComboBox<String> jComboBoxModelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCor;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelMarca;
@@ -432,8 +500,10 @@ public class TelaCadastroVeiculo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados;
+    private javax.swing.JTextField jTextFieldCpfCnpj;
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldStatus;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

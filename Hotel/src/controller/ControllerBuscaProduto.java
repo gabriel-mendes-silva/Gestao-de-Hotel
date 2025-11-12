@@ -6,7 +6,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import model.bo.ProdutoCopa;
 import view.TelaBuscaProduto;
 
 /**
@@ -15,6 +20,7 @@ import view.TelaBuscaProduto;
  */
 public class ControllerBuscaProduto implements ActionListener{
     private TelaBuscaProduto telaBuscaProduto;
+
 
     public ControllerBuscaProduto(TelaBuscaProduto telaBuscaProduto) {
         this.telaBuscaProduto = telaBuscaProduto;
@@ -27,34 +33,94 @@ public class ControllerBuscaProduto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getSource() == this.telaBuscaProduto.getjButtonCarregar()){
-            JOptionPane.showMessageDialog(null, "Botão Carregar Pressionado...");
             if(this.telaBuscaProduto.getjTableDados().getRowCount() == 0){
                 JOptionPane.showMessageDialog(null,"Errrrrrouuuu. \nNão existem dados selecionados!");
             }
             else{
-                JOptionPane.showMessageDialog(null,"Carregando dados para edição");
+                ControllerCadProduto.codigo = (int) this.telaBuscaProduto.getjTableDados()
+                        .getValueAt(this.telaBuscaProduto.getjTableDados().getSelectedRow(), 0);
+
+                this.telaBuscaProduto.dispose();
             }
         }
         else if(evento.getSource() == this.telaBuscaProduto.getjButtonBuscar()){
-            JOptionPane.showMessageDialog(null, "Botão filtrar pressionado...");
-            if(this.telaBuscaProduto.getjTextFieldValor().getText().trim().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null,"Sem dados para a seleção");
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Filtrando informações");
-                if(this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 0){
-                    JOptionPane.showMessageDialog(null, "Filtrando por ID");
+            if (this.telaBuscaProduto.getjTextFieldValor().getText().trim().equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Sem dados para a seleção");
+            } else {
+
+                if (this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 0) {
+                    ProdutoCopa produto = new ProdutoCopa();
+
+                    produto = service.ProdutoService.carregar(Integer.parseInt(this.telaBuscaProduto.getjTextFieldValor().getText()));
+                    System.out.println(produto);
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaProduto.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    tabela.addRow(
+                            new Object[]{
+                                    produto.getId(),
+                                    produto.getDescricao(),
+                                    produto.getValor(),
+                                    produto.getStatus()
+                            }
+                    );
                 }
-                if(this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 1){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Nome");
+                if (this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 1) {
+                    List<ProdutoCopa> produtosFiltrados = new ArrayList<>();
+                    produtosFiltrados = service.ProdutoService.carregar("descricao", this.telaBuscaProduto.getjTextFieldValor().getText());
+                    System.out.println(produtosFiltrados);
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaProduto.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (ProdutoCopa produto : produtosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        produto.getId(),
+                                        produto.getDescricao(),
+                                        produto.getValor(),
+                                        produto.getStatus()
+                                }
+                        );
+                    }
+
                 }
-                if(this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 2){
-                    JOptionPane.showMessageDialog(null, "Filtrando por CPF");
+                if (this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 2) {
+                    List<ProdutoCopa> produtosFiltrados = new ArrayList<>();
+                    produtosFiltrados = service.ProdutoService.carregar("valor", this.telaBuscaProduto.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaProduto.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (ProdutoCopa produto : produtosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        produto.getId(),
+                                        produto.getDescricao(),
+                                        produto.getValor(),
+                                        produto.getStatus()
+                                }
+                        );
+                    }
                 }
-                if(this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 3){
-                    JOptionPane.showMessageDialog(null, "Filtrando por Status");
+                if (this.telaBuscaProduto.getjComboBoxBusca().getSelectedIndex() == 3) {
+                    List<ProdutoCopa> produtosFiltrados = new ArrayList<>();
+                    produtosFiltrados = service.ProdutoService.carregar("status", this.telaBuscaProduto.getjTextFieldValor().getText());
+
+                    DefaultTableModel tabela = (DefaultTableModel) this.telaBuscaProduto.getjTableDados().getModel();
+                    tabela.setRowCount(0);
+
+                    for (ProdutoCopa produto : produtosFiltrados) {
+                        tabela.addRow(
+                                new Object[]{
+                                        produto.getId(),
+                                        produto.getDescricao(),
+                                        produto.getValor(),
+                                        produto.getStatus()
+                                }
+                        );
+                    }
                 }
-                
+
             }
         }
         else if(evento.getSource() == this.telaBuscaProduto.getjButtonSair()){

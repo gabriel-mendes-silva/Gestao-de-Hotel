@@ -22,7 +22,7 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
     @Override
     public void inserir(Veiculo veiculo) {
 
-        String sql = "INSERT INTO VEICULO ("
+        String sql = "INSERT INTO veiculo ("
                 + " PLACA,"
                 + " COR,"
                 + " MODELO_ID,"
@@ -36,19 +36,21 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
             stmt.setString(1, veiculo.getPlaca());
             stmt.setString(2, veiculo.getCor());
             stmt.setInt(3, veiculo.getModelo().getId());
-            if(veiculo.getFuncionario() != null){
+            if (veiculo.getFuncionario() != null)
                 stmt.setInt(4, veiculo.getFuncionario().getId());
-             
-            }
-            else if(veiculo.getFornecedor() != null){
+            else
+                stmt.setNull(4, java.sql.Types.INTEGER);
+
+            if (veiculo.getFornecedor() != null)
                 stmt.setInt(5, veiculo.getFornecedor().getId());
-            }
-            else if(veiculo.getHospede() != null){
-                stmt.setInt(6, veiculo.getFuncionario().getId());
-            }
-            stmt.setInt(4, veiculo.getFuncionario().getId());
-            stmt.setInt(5, veiculo.getFornecedor().getId());
-            stmt.setInt(6, veiculo.getHospede().getId());
+            else
+                stmt.setNull(5, java.sql.Types.INTEGER);
+
+            if (veiculo.getHospede() != null)
+                stmt.setInt(6, veiculo.getHospede().getId());
+            else
+                stmt.setNull(6, java.sql.Types.INTEGER);
+
             stmt.setString(7, String.valueOf(veiculo.getStatus()));
 
             stmt.execute();
@@ -70,7 +72,7 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
                 + " FORNECEDOR_ID,"
                 + " HOSPEDE_ID,"
                 + " STATUS"
-                + " FROM VEICULO"
+                + " FROM veiculo"
                 + " WHERE ID = ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
@@ -108,15 +110,21 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
         ArrayList<Veiculo> veiculos = new ArrayList<>();
 
         String sql = "SELECT"
-                + " ID,"
-                + " PLACA,"
-                + " COR,"
-                + " MODELO_ID,"
-                + " FUNCIONARIO_ID,"
-                + " FORNECEDOR_ID,"
-                + " HOSPEDE_ID,"
-                + " STATUS"
-                + " FROM VEICULO"
+                + " v.ID as vId,"
+                + " v.PLACA as vPlaca,"
+                + " v.COR as vCor,"
+                + " m.descricao as modelo,"
+                + " mar.descricao,"
+                + " v.MODELO_ID as vmodelo_id,"
+                + " v.FUNCIONARIO_ID as vFuncionario_id,"
+                + " v.FORNECEDOR_ID as vFornecedor_id,"
+                + " v.HOSPEDE_ID as vHospede_id,"
+                + " v.STATUS as vStatus"
+                + " FROM veiculo v"
+                + " join modelo m"
+                + " on v.modelo_id = m.id"
+                + " join marca mar"
+                + " on mar.id = marca_id"
                 + " WHERE " + atributo + " LIKE ?";
 
         try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -125,14 +133,14 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
             try (ResultSet resultSet = pstmt.executeQuery()) {
                 while (resultSet.next()) {
                     Veiculo veiculo = new Veiculo(
-                            resultSet.getInt("ID"),
-                            resultSet.getString("PLACA"),
-                            resultSet.getString("COR"),
-                            new ModeloMySQL().buscar(resultSet.getInt("MODELO_ID")),
-                            new FuncionarioMySQL().buscar(resultSet.getInt("FUNCIONARIO_ID")),
-                            new FornecedorMySQL().buscar(resultSet.getInt("FORNECEDOR_ID")),
-                            new HospedeMySQL().buscar(resultSet.getInt("HOSPEDE_ID")),
-                            resultSet.getString("STATUS").charAt(0)
+                            resultSet.getInt("vId"),
+                            resultSet.getString("vPlaca"),
+                            resultSet.getString("vCor"),
+                            new ModeloMySQL().buscar(resultSet.getInt("vModelo_id")),
+                            new FuncionarioMySQL().buscar(resultSet.getInt("vFuncionario_id")),
+                            new FornecedorMySQL().buscar(resultSet.getInt("vFornecedor_id")),
+                            new HospedeMySQL().buscar(resultSet.getInt("vHospede_id")),
+                            resultSet.getString("vStatus").charAt(0)
                     );
                     veiculos.add(veiculo);
                 }
@@ -148,7 +156,8 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
     @Override
     public void atualizar(Veiculo veiculo) {
 
-        String sql = "UPDATE VEICULO"
+        String sql = "UPDATE veiculo"
+                + " SET"
                 + " PLACA = ?,"
                 + " COR = ?,"
                 + " MODELO_ID = ?,"
@@ -163,9 +172,21 @@ public class VeiculoMySQL implements Persistencia<Veiculo> {
             stmt.setString(1, veiculo.getPlaca());
             stmt.setString(2, veiculo.getCor());
             stmt.setInt(3, veiculo.getModelo().getId());
-            stmt.setInt(4, veiculo.getFuncionario().getId());
-            stmt.setInt(5, veiculo.getFornecedor().getId());
-            stmt.setInt(6, veiculo.getHospede().getId());
+            if (veiculo.getFuncionario() != null)
+                stmt.setInt(4, veiculo.getFuncionario().getId());
+            else
+                stmt.setNull(4, java.sql.Types.INTEGER);
+
+            if (veiculo.getFornecedor() != null)
+                stmt.setInt(5, veiculo.getFornecedor().getId());
+            else
+                stmt.setNull(5, java.sql.Types.INTEGER);
+
+            if (veiculo.getHospede() != null)
+                stmt.setInt(6, veiculo.getHospede().getId());
+            else
+                stmt.setNull(6, java.sql.Types.INTEGER);
+
             stmt.setString(7, String.valueOf(veiculo.getStatus()));
             stmt.setInt(8, veiculo.getId());
 
